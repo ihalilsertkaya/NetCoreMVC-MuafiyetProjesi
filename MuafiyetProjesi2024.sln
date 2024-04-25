@@ -1,6 +1,6 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuafiyetProjesi2024", "MuafiyetProjesi2024\MuafiyetProjesi2024.csproj", "{3B1730F4-9EB9-47A5-97BD-53BFEAF85B71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuafiyetProjesi2024", "MuafiyetProjesi2024.csproj", "{3B1730F4-9EB9-47A5-97BD-53BFEAF85B71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
