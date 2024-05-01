@@ -36,7 +36,7 @@ namespace MuafiyetProjesi2024.Controllers
                     int count = (int)command.ExecuteScalar();
                     if (count > 0)
                     {
-                        return RedirectToAction("Student", "Student");
+                        return RedirectToAction("BasvuruFormu", "Student");
                     }
                     else
                     {

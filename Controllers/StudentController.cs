@@ -4,10 +4,7 @@ namespace MuafiyetProjesi2024.Controllers;
 
 public class StudentController : Controller
 {
-
-    
-   
-    public IActionResult Student()
+    public IActionResult BasvuruFormu()
     {
         return View();
     }
