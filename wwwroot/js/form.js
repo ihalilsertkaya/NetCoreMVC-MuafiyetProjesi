@@ -5,20 +5,18 @@ window.onload = function () {
   var ay = simdikiTarih.getMonth() + 1;
   var yil = simdikiTarih.getFullYear();
   if (ay < 10) {
-    if(gun<10){
+    if (gun < 10) {
       document.getElementById("date").innerText =
-      "0" + gun + "/" + "0" + ay + "/" + yil;
-    }
-    else{
+        "0" + gun + "/" + "0" + ay + "/" + yil;
+    } else {
       document.getElementById("date").innerText =
-      gun + "/" + "0" + ay + "/" + yil;
+        gun + "/" + "0" + ay + "/" + yil;
     }
-    
   } else {
-    if(gun<10){
-      document.getElementById("date").innerText = "0" + gun + "/" + ay + "/" + yil;
-    }
-    else{
+    if (gun < 10) {
+      document.getElementById("date").innerText =
+        "0" + gun + "/" + ay + "/" + yil;
+    } else {
       document.getElementById("date").innerText = gun + "/" + ay + "/" + yil;
     }
   }
@@ -76,23 +74,24 @@ document
     derslerBody.appendChild(newRow);
   });
 
-  /* ! T.C. kimlik no kontrol */
+/* ! T.C. kimlik no kontrol */
 
-  var inputElement = document.getElementById("tc_no");
+var inputElement = document.getElementById("tc_no");
 
-  inputElement.addEventListener("input", function () {
-         
-      var value = this.value;
+inputElement.addEventListener("input", function () {
+  var value = this.value;
 
-       if (value.length != 11 || !isNumeric(value)) {
-                this.setCustomValidity("TC Kimlik numarası 11 haneli olmalı ve sadece rakamlardan oluşmalıdır.");
-       } else {
-                // Hata mesajını temizle
-                this.setCustomValidity("");
-       }
-  });
-
-  // Girilen değerin sadece rakamlardan oluşup oluşmadığını kontrol etmek için fonksiyon
-  function isNumeric(str) {
-     return /^\d+$/.test(str);
+  if (value.length != 11 || !isNumeric(value)) {
+    this.setCustomValidity(
+      "TC Kimlik numarası 11 haneli olmalı ve sadece rakamlardan oluşmalıdır."
+    );
+  } else {
+    // Hata mesajını temizle
+    this.setCustomValidity("");
   }
+});
+
+// Girilen değerin sadece rakamlardan oluşup oluşmadığını kontrol etmek için fonksiyon
+function isNumeric(str) {
+  return /^\d+$/.test(str);
+}
