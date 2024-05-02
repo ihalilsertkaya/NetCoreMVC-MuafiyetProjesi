@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using MuafiyetProjesi2024.Data;
 using MuafiyetProjesi2024.Models;
 
@@ -24,7 +26,8 @@ namespace MuafiyetProjesi2024.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(Kullanicilars kullanici)
+
+        public async Task<IActionResult> Index(Kullanicilars kullanici)
         { 
             var result = _context.Kullanicilar
                 .Any(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
@@ -39,6 +42,9 @@ namespace MuafiyetProjesi2024.Controllers
             return View();
         }
 
+
+
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -46,39 +52,26 @@ namespace MuafiyetProjesi2024.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(Kullanicilars uc)
+        public async Task<IActionResult> Register(Kullanicilars kullanici)
         {
-            string connectionString = _configuration.GetConnectionString("SqlCon");
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                // Kontrol için sorgu
-                string checkQuery = "SELECT COUNT(*) FROM [dbo].[Kullanicilar] WHERE Mail = @Mail ";
-                using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
-                {
-                    connection.Open();
-                    checkCommand.Parameters.AddWithValue("@Mail", uc.Mail);
-                    int existingUserCount = (int)checkCommand.ExecuteScalar();
-                    if (existingUserCount > 0)
-                    {
-                        // Eğer e-posta adresi veritabanında varsa, kullanıcıya uygun bir mesaj göster
-                        ModelState.AddModelError(string.Empty, "Bu e-posta adresi zaten kullanılmaktadır.");
-                        return View();
-                    }
-                }
+            // Veritabanında kullanıcı var mı kontrol ediyoruz
+            var existingUser = await _context.Kullanicilar.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail);
 
-                // Eğer e-posta adresi veritabanında yoksa, kayıt işlemine devam et
-                string insertQuery = "INSERT INTO [dbo].[Kullanicilar] (TCKimlik,Mail,Parola) VALUES (@TCKimlik,@Mail, @Parola)";
-                using (SqlCommand command = new SqlCommand(insertQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@TCKimlik", uc.TCKimlik);
-                    command.Parameters.AddWithValue("@Mail", uc.Mail);
-                    command.Parameters.AddWithValue("@Parola", uc.Parola);
-                    command.ExecuteNonQuery();
-                }
+            if (existingUser != null)
+            {
+                // Eğer kullanıcı varsa, hata mesajı ekleyip aynı görünümü tekrar gösteriyoruz
+                ModelState.AddModelError(string.Empty, "Bu e-posta adresi zaten kullanılmaktadır.");
+                return View();
             }
+
+            // Eğer kullanıcı yoksa, yeni kullanıcıyı ekliyoruz
+            _context.Kullanicilar.Add(kullanici);
+            await _context.SaveChangesAsync();
+
             // Başarılı kayıt durumunda yönlendirme
             return RedirectToAction("Index");
         }
+
 
 
         public IActionResult Error()
