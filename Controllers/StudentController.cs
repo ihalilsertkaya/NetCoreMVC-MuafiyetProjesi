@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace MuafiyetProjesi2024.Controllers;
-
-public class StudentController : Controller
+namespace MuafiyetProjesi2024.Controllers
 {
-    public IActionResult BasvuruFormu()
+    public class StudentController : Controller
     {
-        return View();
-    }
+        public IActionResult BasvuruFormu()
+        {
+            return View();
+        }
 
    
+    }
 }

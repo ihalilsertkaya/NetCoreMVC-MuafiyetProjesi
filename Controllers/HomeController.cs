@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using MuafiyetProjesi2024.Data;
 using MuafiyetProjesi2024.Models;
 
 namespace MuafiyetProjesi2024.Controllers
@@ -8,10 +9,12 @@ namespace MuafiyetProjesi2024.Controllers
     public class HomeController : Controller
     {
         private readonly IConfiguration _configuration;
+        private readonly AppDbContext _context;
 
-        public HomeController(IConfiguration configuration)
+        public HomeController(IConfiguration configuration, AppDbContext context)
         {
             _configuration = configuration;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -21,30 +24,19 @@ namespace MuafiyetProjesi2024.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-       
-        public IActionResult Index(Kullanicilar uc)
-        {
-            string connectionString = _configuration.GetConnectionString("SqlCon");
-            using (SqlConnection connection = new SqlConnection(connectionString))
+        public IActionResult Index(Kullanicilars kullanici)
+        { 
+            var result = _context.Kullanicilar
+                .Any(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
+            //sorguyu yukaridan yapiyoruz. result true veya false dönüyor. Models'daki veri ile veritabani kiyaslaniyor. ??
+
+            if (result)
             {
-                string query = "SELECT COUNT(*) FROM [dbo].[Kullanicilar] WHERE Mail = @Mail AND Parola = @Parola";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    command.Parameters.AddWithValue("@Mail", uc.Mail);
-                    command.Parameters.AddWithValue("@Parola", uc.Parola);
-                    int count = (int)command.ExecuteScalar();
-                    if (count > 0)
-                    {
-                        return RedirectToAction("BasvuruFormu", "Student");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
-                        return View();
-                    }
-                }
+                return RedirectToAction("BasvuruFormu", "Student");
             }
+
+            ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
+            return View();
         }
 
         [HttpGet]
@@ -54,7 +46,7 @@ namespace MuafiyetProjesi2024.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(Kullanicilar uc)
+        public IActionResult Register(Kullanicilars uc)
         {
             string connectionString = _configuration.GetConnectionString("SqlCon");
             using (SqlConnection connection = new SqlConnection(connectionString))
