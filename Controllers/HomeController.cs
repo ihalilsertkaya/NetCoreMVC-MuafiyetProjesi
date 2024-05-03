@@ -3,33 +3,34 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using MuafiyetProjesi2024.Data;
-using MuafiyetProjesi2024.Models;
+//using MuafiyetProjesi2024.Data;
+//using MuafiyetProjesi2024.Models;
 
 namespace MuafiyetProjesi2024.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IConfiguration _configuration;
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
 
-        public HomeController(IConfiguration configuration, AppDbContext context)
+        public HomeController(IConfiguration configuration)
         {
             _configuration = configuration;
-            _context = context;
+            //_context = context;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
+        /* ---SQL sonrasi yeniden acilacak.
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Index(Kullanicilars kullanici)
-        { 
-            var result = _context.Kullanicilar
+        public async Task<IActionResult> Index()
+        {
+
+             var result = _context.Kullanicilar
                 .Any(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
             //sorguyu yukaridan yapiyoruz. result true veya false dönüyor. Models'daki veri ile veritabani kiyaslaniyor. ??
 
@@ -39,9 +40,10 @@ namespace MuafiyetProjesi2024.Controllers
             }
 
             ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
+            
             return View();
         }
-
+*/
 
 
 
@@ -50,7 +52,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             return View();
         }
-
+/* sql sonrasi acilacak
         [HttpPost]
         public async Task<IActionResult> Register(Kullanicilars kullanici)
         {
@@ -71,12 +73,16 @@ namespace MuafiyetProjesi2024.Controllers
             // Başarılı kayıt durumunda yönlendirme
             return RedirectToAction("Index");
         }
+*/
 
 
-
-        public IActionResult Error()
+        /*
+         public IActionResult Error()
+         
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        */
     }
+    
 }
