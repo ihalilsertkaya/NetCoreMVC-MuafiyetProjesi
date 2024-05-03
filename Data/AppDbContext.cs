@@ -10,6 +10,10 @@ namespace MuafiyetProjesi2024.Data
         }
 
          public DbSet<Kullanicilars> Kullanicilar { get; set; }
+         public DbSet<AdminKullaniciTable> AdminKullanicilar { get; set; }
+         public DbSet<BasvuruTable> Basvurular { get; set; }
+         public DbSet<DersTable> Dersler { get; set; }
+         public DbSet<EvrakTable> Evraklar { get; set; }
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

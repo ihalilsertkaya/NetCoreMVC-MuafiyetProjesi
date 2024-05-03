@@ -1,6 +1,6 @@
 namespace MuafiyetProjesi2024.Models
 {
-   public class AdminKullanicilar
+   public class AdminKullaniciTable
 {
     public string? UserName { get; set; }
     public string? TCKimlik { get; set; }
