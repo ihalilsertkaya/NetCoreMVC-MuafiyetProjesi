@@ -3,34 +3,34 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-//using MuafiyetProjesi2024.Data;
-//using MuafiyetProjesi2024.Models;
+using MuafiyetProjesi2024.Data;
+using MuafiyetProjesi2024.Models;
 
 namespace MuafiyetProjesi2024.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IConfiguration _configuration;
-        //private readonly AppDbContext _context;
+        private readonly AppDbContext _context;
 
-        public HomeController(IConfiguration configuration)
+        public HomeController(IConfiguration configuration,AppDbContext context)
         {
             _configuration = configuration;
-            //_context = context;
+            _context = context;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-        /* ---SQL sonrasi yeniden acilacak.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Kullanicilar kullanici)
         {
 
-             var result = _context.Kullanicilar
+             var result = _context.Kullanicilars
                 .Any(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
             //sorguyu yukaridan yapiyoruz. result true veya false dönüyor. Models'daki veri ile veritabani kiyaslaniyor. ??
 
@@ -43,21 +43,18 @@ namespace MuafiyetProjesi2024.Controllers
             
             return View();
         }
-*/
-
-
-
+        
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-/* sql sonrasi acilacak
+        
         [HttpPost]
-        public async Task<IActionResult> Register(Kullanicilars kullanici)
+        public async Task<IActionResult> Register(Kullanicilar kullanici)
         {
             // Veritabanında kullanıcı var mı kontrol ediyoruz
-            var existingUser = await _context.Kullanicilar.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail);
+            var existingUser = await _context.Kullanicilars.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail);
 
             if (existingUser != null)
             {
@@ -67,22 +64,19 @@ namespace MuafiyetProjesi2024.Controllers
             }
 
             // Eğer kullanıcı yoksa, yeni kullanıcıyı ekliyoruz
-            _context.Kullanicilar.Add(kullanici);
+            _context.Kullanicilars.Add(kullanici);
             await _context.SaveChangesAsync();
 
             // Başarılı kayıt durumunda yönlendirme
             return RedirectToAction("Index");
         }
-*/
-
-
-        /*
+        
          public IActionResult Error()
          
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        */
+    
     }
     
 }

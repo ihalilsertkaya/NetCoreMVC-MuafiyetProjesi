@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-//using MuafiyetProjesi2024.Data;
+using MuafiyetProjesi2024.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -9,8 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//sql baglantisi sonrasi yeniden acilacak.
-//builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon")));
 
 // Authentication ekleniyor
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
