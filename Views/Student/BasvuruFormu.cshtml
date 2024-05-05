@@ -23,7 +23,7 @@
         Tarih:<span id="date"></span>
       </p>
       <!--! Form -->
-      <form action="#" method="post" enctype="multipart/form-data">
+      <form asp-action="SubmitApplication" method="post" enctype="multipart/form-data">
         <!--! Bölüm Başkanlığı Componenti -->
         <div class="Component">
           <div class="flex-label-input">
@@ -45,11 +45,11 @@
           <h3>Öğrenci Bilgileri</h3>
           <div class="content">
             <div class="flex-label-input">
-              <label for="adi_soyadi">Adı-Soyadı:</label>
+              <label for="adi_soyadi">Ad Soyad:</label>
               <input
                 type="text"
                 id="adi_soyadi"
-                name="adi_soyadi"
+                name="Ad"
                 required
               /><br />
             </div>
@@ -58,7 +58,7 @@
               <input
                 type="text"
                 id="tc_no"
-                name="tc_no"
+                name="Tckimlik"
                 required
               /><br />
             </div>
@@ -67,21 +67,21 @@
               <input
                 type="text"
                 id="ogrenci_no"
-                name="ogrenci_no"
+                name="OgrNo"
                 required
               /><br />
             </div>
             <div class="flex-label-input">
               <label for="telefon">Telefon:</label>
-              <input type="tel" id="telefon" name="telefon" required /><br />
+              <input type="tel" id="telefon" name="Tel" required /><br />
             </div>
             <div class="flex-label-input">
               <label for="eposta">Eposta:</label>
-              <input type="email" id="eposta" name="eposta" required /><br />
+              <input type="email" id="eposta" name="Mail" required /><br />
             </div>
             <div class="flex-label-input">
               <label for="kayit_sekli">Kayıtlanma Şekli:</label>
-              <select id="kayit_sekli" name="kayit_sekli">
+              <select id="kayit_sekli" name="KayitTur">
                 <option value="Yatay Geçiş">Yatay Geçiş</option>
                 <option value="Dikey Geçiş">Dikey Geçiş</option>
                 <option value="Yeni Kayit">Yeni Kayıt</option></select
@@ -99,7 +99,7 @@
               <input
                 type="text"
                 id="geldigi_Uni"
-                name="geldigi_Uni"
+                name="GeldigiUni"
                 required
               /><br />
             </div>
@@ -108,18 +108,13 @@
               <input
                 type="text"
                 id="geldigi_fakulte"
-                name="geldigi_fakulte"
+                name="GeldigiFak"
                 required
               /><br />
             </div>
             <div class="flex-label-input">
-              <label for="geldigi_bolum">Geldiği Bölüm:</label>
-              <input
-                type="text"
-                id="geldigi_bolum"
-                name="geldigi_bolum"
-                required
-              /><br />
+              <label>Geldiği Bölüm:</label>
+              <input id="GeldigiBolum" type="text" name="GeldigiBolum" required/> <br/>
             </div>
           </div>
         </div>
@@ -145,14 +140,14 @@
             </thead>
             <tbody id="derslerBody">
               <tr>
-                <td><input type="text" name="dersAdi" class="inputDers" /></td>
-                <td><input type="number" name="kredi" class="inputDers" /></td>
-                <td><input type="number" name="akts" class="inputDers" /></td>
-                <td><input type="text" name="kodu" class="inputDers" /></td>
-                <td><input type="text" name="dersAdi" class="inputDers" /></td>
-                <td><input type="number" name="kredi" class="inputDers" /></td>
-                <td><input type="number" name="akts" class="inputDers" /></td>
-                <td><input type="text" name="kodu" class="inputDers" /></td>
+                <td><input type="text" name="OncekiDersAdi" class="inputDers" /></td>
+                <td><input type="number" name="OncekiDersKredisi" class="inputDers" /></td>
+                <td><input type="number" name="OncekiDersAkts" class="inputDers" /></td>
+                <td><input type="text" name="OncekiDersKodu" class="inputDers" /></td>
+                <td><input type="text" name="MuafDersAdi" class="inputDers" /></td>
+                <td><input type="number" name="MuafDersKredisi" class="inputDers" /></td>
+                <td><input type="number" name="MuafDersAkts" class="inputDers" /></td>
+                <td><input type="text" name="MuafDersKodu" class="inputDers" /></td>
               </tr>
             </tbody>
           </table>
@@ -204,7 +199,7 @@
               <input
                 
                 type="file"
-                name="transkript"
+                name="Transkript"
                 id="transkript"
                 required
               />
@@ -214,7 +209,7 @@
               <input
                 
                 type="file"
-                name="dersDokum"
+                name="DersIcerik"
                 id="dersDokum"
                 required
               />
