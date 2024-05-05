@@ -54,12 +54,12 @@ namespace MuafiyetProjesi2024.Controllers
         public async Task<IActionResult> Register(Kullanicilar kullanici)
         {
             // Veritabanında kullanıcı var mı kontrol ediyoruz
-            var existingUser = await _context.Kullanicilars.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail);
+            var existingUser = await _context.Kullanicilars.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail || x.Tckimlik == kullanici.Tckimlik ) ;
 
             if (existingUser != null)
             {
                 // Eğer kullanıcı varsa, hata mesajı ekleyip aynı görünümü tekrar gösteriyoruz
-                ModelState.AddModelError(string.Empty, "Bu e-posta adresi zaten kullanılmaktadır.");
+                ModelState.AddModelError(string.Empty, "Bu e-posta adresi veya Tc kimlik no zaten kullanılmaktadır.");
                 return View();
             }
 
