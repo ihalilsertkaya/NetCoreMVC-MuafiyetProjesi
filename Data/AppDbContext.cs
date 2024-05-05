@@ -51,14 +51,13 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.BasvuruId)
                 .ValueGeneratedNever()
                 .HasColumnName("BasvuruID");
-            entity.Property(e => e.Ad).HasMaxLength(50);
+            entity.Property(e => e.AdSoyad).HasMaxLength(100);
             entity.Property(e => e.GeldigiBolum).HasMaxLength(100);
             entity.Property(e => e.GeldigiFak).HasMaxLength(100);
             entity.Property(e => e.GeldigiUni).HasMaxLength(100);
             entity.Property(e => e.KayitTur).HasMaxLength(50);
             entity.Property(e => e.Mail).HasMaxLength(50);
             entity.Property(e => e.OgrNo).HasMaxLength(20);
-            entity.Property(e => e.Soyad).HasMaxLength(50);
             entity.Property(e => e.Tckimlik)
                 .HasMaxLength(11)
                 .HasColumnName("TCKimlik");
