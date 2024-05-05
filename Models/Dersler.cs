@@ -21,5 +21,7 @@ public partial class Dersler
 
     public int? MuafDersAkts { get; set; }
 
+    public string? DersKodu { get; set; }
+
     public virtual Kullanicilar? TckimlikNavigation { get; set; }
 }

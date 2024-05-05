@@ -80,6 +80,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("DersID");
             entity.Property(e => e.MuafDersAdi).HasMaxLength(100);
             entity.Property(e => e.OncekiDersAdi).HasMaxLength(100);
+            entity.Property(e => e.DersKodu).HasMaxLength(10);
             entity.Property(e => e.Tckimlik)
                 .HasMaxLength(11)
                 .HasColumnName("TCKimlik");
