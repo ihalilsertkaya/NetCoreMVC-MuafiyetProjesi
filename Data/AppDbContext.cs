@@ -16,24 +16,24 @@ public partial class AppDbContext : DbContext
     {
     }
 
-    public virtual DbSet<AdminKullanicilar> AdminKullanicilars { get; set; }
+    public virtual DbSet<AdminKullanici> AdminKullanicilar { get; set; }
 
-    public virtual DbSet<Basvurular> Basvurulars { get; set; }
+    public virtual DbSet<Basvuru> Basvurular { get; set; }
 
-    public virtual DbSet<Dersler> Derslers { get; set; }
+    public virtual DbSet<Ders> Dersler { get; set; }
 
-    public virtual DbSet<Evraklar> Evraklars { get; set; }
+    public virtual DbSet<Evrak> Evraklar { get; set; }
 
-    public virtual DbSet<Kullanicilar> Kullanicilars { get; set; }
+    public virtual DbSet<Kullanici> Kullanicilar { get; set; }
 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AdminKullanicilar>(entity =>
+        modelBuilder.Entity<AdminKullanici>(entity =>
         {
             entity.HasKey(e => e.Tckimlik).HasName("PK__AdminKul__4338AEC65A44904D");
 
-            entity.ToTable("AdminKullanicilar");
+            entity.ToTable("AdminKullanici");
 
             entity.Property(e => e.Tckimlik)
                 .HasMaxLength(11)
@@ -42,85 +42,39 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.UserName).HasMaxLength(50);
         });
 
-        modelBuilder.Entity<Basvurular>(entity =>
+        modelBuilder.Entity<Basvuru>(entity =>
         {
-            entity.HasKey(e => e.BasvuruId).HasName("PK__Basvurul__5704D2A81477D183");
+            entity.HasOne(d => d.Kullanici)
+                .WithOne(p => p.Basvuru)
+                .HasForeignKey<Basvuru>(d => d.Tckimlik)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Basvurular_Kullanicilar");
+        });
 
-            entity.ToTable("Basvurular");
-
-            entity.Property(e => e.BasvuruId)
-                .ValueGeneratedNever()
-                .HasColumnName("BasvuruID");
-            entity.Property(e => e.AdSoyad).HasMaxLength(100);
-            entity.Property(e => e.GeldigiBolum).HasMaxLength(100);
-            entity.Property(e => e.GeldigiFak).HasMaxLength(100);
-            entity.Property(e => e.GeldigiUni).HasMaxLength(100);
-            entity.Property(e => e.KayitTur).HasMaxLength(50);
-            entity.Property(e => e.Mail).HasMaxLength(50);
-            entity.Property(e => e.OgrNo).HasMaxLength(20);
-            entity.Property(e => e.Tckimlik)
-                .HasMaxLength(11)
-                .HasColumnName("TCKimlik");
-            entity.Property(e => e.Tel).HasMaxLength(20);
-
-            entity.HasOne(d => d.TckimlikNavigation).WithMany(p => p.Basvurulars)
+        modelBuilder.Entity<Ders>(entity =>
+        {
+            entity.HasOne(d => d.Kullanici)
+                .WithMany(p => p.Ders)
                 .HasForeignKey(d => d.Tckimlik)
-                .HasConstraintName("FK__Basvurula__TCKim__398D8EEE");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Dersler_Kullanicilar");
         });
 
-        modelBuilder.Entity<Dersler>(entity =>
+        modelBuilder.Entity<Evrak>(entity =>
         {
-            entity.HasKey(e => e.DersId).HasName("PK__Dersler__E8B3DE717708F20C");
-
-            entity.ToTable("Dersler");
-
-            entity.Property(e => e.DersId)
-                .ValueGeneratedNever()
-                .HasColumnName("DersID");
-            entity.Property(e => e.MuafDersAdi).HasMaxLength(100);
-            entity.Property(e => e.OncekiDersAdi).HasMaxLength(100);
-            entity.Property(e => e.MuafDersKodu).HasMaxLength(10);
-            entity.Property(e => e.OncekiDersKodu).HasMaxLength(10);
-            entity.Property(e => e.Tckimlik)
-                .HasMaxLength(11)
-                .HasColumnName("TCKimlik");
-
-            entity.HasOne(d => d.TckimlikNavigation).WithMany(p => p.Derslers)
-                .HasForeignKey(d => d.Tckimlik)
-                .HasConstraintName("FK__Dersler__TCKimli__3F466844");
+            entity.HasOne(d => d.Kullanici)
+                .WithOne(p => p.Evrak)
+                .HasForeignKey<Evrak>(d => d.Tckimlik)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Evraklar_Kullanicilar");
         });
 
-        modelBuilder.Entity<Evraklar>(entity =>
+        modelBuilder.Entity<Kullanici>(entity =>
         {
-            entity.HasKey(e => e.EvrakId).HasName("PK__Evraklar__8324143651C559C9");
-
-            entity.ToTable("Evraklar");
-
-            entity.Property(e => e.EvrakId)
-                .ValueGeneratedNever()
-                .HasColumnName("EvrakID");
-            entity.Property(e => e.Tckimlik)
-                .HasMaxLength(11)
-                .HasColumnName("TCKimlik");
-
-            entity.HasOne(d => d.TckimlikNavigation).WithMany(p => p.Evraklars)
-                .HasForeignKey(d => d.Tckimlik)
-                .HasConstraintName("FK__Evraklar__TCKiml__3C69FB99");
+            entity.HasKey(e => e.Tckimlik);
+            entity.Property(e => e.Tckimlik).IsRequired();
         });
-
-        modelBuilder.Entity<Kullanicilar>(entity =>
-        {
-            entity.HasKey(e => e.Tckimlik).HasName("PK__Kullanic__4338AEC6D781B512");
-
-            entity.ToTable("Kullanicilar");
-
-            entity.Property(e => e.Tckimlik)
-                .HasMaxLength(11)
-                .HasColumnName("TCKimlik");
-            entity.Property(e => e.Mail).HasMaxLength(50);
-            entity.Property(e => e.Parola).HasMaxLength(100);
-        });
-
+        
         OnModelCreatingPartial(modelBuilder);
     }
 

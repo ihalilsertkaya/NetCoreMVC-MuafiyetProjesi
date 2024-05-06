@@ -20,9 +20,9 @@ namespace MuafiyetProjesi2024.Controllers
         }
 
         
-        public IActionResult AdminLogin(AdminKullanicilar adminKullanici)
+        public IActionResult AdminLogin(AdminKullanici adminKullanici)
         {
-            var admin = _context.AdminKullanicilars
+            var admin = _context.AdminKullanicilar
                 .Any(x => x.UserName == adminKullanici.UserName && x.Parola == adminKullanici.Parola);
 
             if (admin)
@@ -30,7 +30,7 @@ namespace MuafiyetProjesi2024.Controllers
                 return RedirectToAction("AdminPanel", "Admin");
             }
 
-            ModelState.AddModelError(string.Empty, "Geçersiz kullanýcý adý veya parola.");
+            ModelState.AddModelError(string.Empty, "Geï¿½ersiz kullanï¿½cï¿½ adï¿½ veya parola.");
 
             return View();
         }

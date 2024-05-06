@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MuafiyetProjesi2024.Models;
 
-public partial class Dersler
+public partial class Ders
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int DersId { get; set; }
-
     public string? Tckimlik { get; set; }
 
     public string? OncekiDersAdi { get; set; }
@@ -25,5 +28,5 @@ public partial class Dersler
 
     public string? OncekiDersKodu { get; set; }
 
-    public virtual Kullanicilar? TckimlikNavigation { get; set; }
+    public Kullanici? Kullanici { get; set; }
 }

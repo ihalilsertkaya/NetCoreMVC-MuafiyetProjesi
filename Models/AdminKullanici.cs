@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MuafiyetProjesi2024.Models;
 
-public partial class AdminKullanicilar
+public partial class AdminKullanici
 {
     public string? UserName { get; set; }
 

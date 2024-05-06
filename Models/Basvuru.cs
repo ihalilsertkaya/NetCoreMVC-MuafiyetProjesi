@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MuafiyetProjesi2024.Models;
 
-public partial class Basvurular
+public partial class Basvuru
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int BasvuruId { get; set; }
 
     public string? AdSoyad { get; set; }
@@ -25,5 +29,5 @@ public partial class Basvurular
 
     public string? GeldigiBolum { get; set; }
 
-    public virtual Kullanicilar? TckimlikNavigation { get; set; }
+    public Kullanici? Kullanici { get; set; }
 }

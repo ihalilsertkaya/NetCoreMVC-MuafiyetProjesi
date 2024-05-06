@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MuafiyetProjesi2024.Models;
 
-public partial class Evraklar
+public partial class Evrak
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EvrakId { get; set; }
 
     public string? Transkript { get; set; }
@@ -13,5 +17,5 @@ public partial class Evraklar
 
     public string? Tckimlik { get; set; }
 
-    public virtual Kullanicilar? TckimlikNavigation { get; set; }
+    public  Kullanici? Kullanici { get; set; }
 }
