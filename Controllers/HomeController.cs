@@ -10,6 +10,7 @@ namespace MuafiyetProjesi2024.Controllers
 {
     public class HomeController : Controller
     {
+        
         private readonly IConfiguration _configuration;
         private readonly AppDbContext _context;
 
@@ -27,15 +28,17 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Index(Kullanicilar kullanici)
+        public async Task<IActionResult> Index(Kullanici kullanici)
         {
-
-             var result = _context.Kullanicilars
+             var result = _context.Kullanicilar
                 .Any(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
             //sorguyu yukaridan yapiyoruz. result true veya false dönüyor. Models'daki veri ile veritabani kiyaslaniyor. ??
 
             if (result)
             {
+                var OturumAcanKullanici= _context.Kullanicilar
+                    .SingleOrDefault(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
+                TempData["oturumAcanTc"] = OturumAcanKullanici.Tckimlik;
                 return RedirectToAction("BasvuruFormu", "Student");
             }
 
@@ -51,10 +54,10 @@ namespace MuafiyetProjesi2024.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Register(Kullanicilar kullanici)
+        public async Task<IActionResult> Register(Kullanici kullanici)
         {
             // Veritabanında kullanıcı var mı kontrol ediyoruz
-            var existingUser = await _context.Kullanicilars.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail || x.Tckimlik == kullanici.Tckimlik ) ;
+            var existingUser = await _context.Kullanicilar.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail || x.Tckimlik == kullanici.Tckimlik ) ;
 
             if (existingUser != null)
             {
@@ -64,7 +67,7 @@ namespace MuafiyetProjesi2024.Controllers
             }
 
             // Eğer kullanıcı yoksa, yeni kullanıcıyı ekliyoruz
-            _context.Kullanicilars.Add(kullanici);
+            _context.Kullanicilar.Add(kullanici);
             await _context.SaveChangesAsync();
 
             // Başarılı kayıt durumunda yönlendirme
