@@ -19,11 +19,17 @@ namespace MuafiyetProjesi2024.Controllers
             _context = context;
         }
 
+        public IActionResult AdminLogin()
+        {
+            return View();
+        }
         
-        public IActionResult AdminLogin(AdminKullanici adminKullanici)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AdminLogin(AdminKullanici adminGiris)
         {
             var admin = _context.AdminKullanicilar
-                .Any(x => x.UserName == adminKullanici.UserName && x.Parola == adminKullanici.Parola);
+                .Any(x => x.UserName == adminGiris.UserName && x.Parola == adminGiris.Parola);
 
             if (admin)
             {

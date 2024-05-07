@@ -16,7 +16,6 @@ public partial class AppDbContext : DbContext
     {
     }
 
-    public virtual DbSet<AdminKullanici> AdminKullanicilar { get; set; }
 
     public virtual DbSet<Basvuru> Basvurular { get; set; }
 
@@ -25,6 +24,8 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<Evrak> Evraklar { get; set; }
 
     public virtual DbSet<Kullanici> Kullanicilar { get; set; }
+    
+    public virtual DbSet<AdminKullanici> AdminKullanicilar { get; set; }
 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,7 +34,7 @@ public partial class AppDbContext : DbContext
         {
             entity.HasKey(e => e.Tckimlik).HasName("PK__AdminKul__4338AEC65A44904D");
 
-            entity.ToTable("AdminKullanici");
+            entity.ToTable("AdminKullanicilar");
 
             entity.Property(e => e.Tckimlik)
                 .HasMaxLength(11)
