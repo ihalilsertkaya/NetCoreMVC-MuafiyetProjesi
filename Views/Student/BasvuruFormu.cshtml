@@ -23,7 +23,8 @@
         Tarih:<span id="date"></span>
       </p>
       <!--! Form -->
-      <form asp-action="SubmitApplication" method="post" enctype="multipart/form-data">
+      <form 
+      asp-action="SubmitApplication" method="post" enctype="multipart/form-data" id="myForm">
         <!--! Bölüm Başkanlığı Componenti -->
         <div class="Component">
           <div class="flex-label-input">
@@ -68,7 +69,7 @@
                 type="text"
                 id="ogrenci_no"
                 name="OgrNo"
-                required
+                placeholder=" Kayıtlanma şekliniz yeni kayıt ise boş bırakın lütfen!"
               /><br />
             </div>
             <div class="flex-label-input">
@@ -197,20 +198,20 @@
             <div class="file">
               <span style="font-weight: bold;font-size:.9rem;">Transkript Belgesi (Onaylı)</span>
               <input
-                
                 type="file"
                 name="Transkript"
                 id="transkript"
+                accept=".pdf"
                 required
               />
             </div>
             <div class="file">
               <span style="font-weight: bold; font-size:.9rem;">Ders Döküm Belgesi (Onaylı)</span>
               <input
-                
                 type="file"
                 name="DersIcerik"
                 id="dersDokum"
+                accept=".pdf"
                 required
               />
             </div>

@@ -20,6 +20,8 @@ window.onload = function () {
       document.getElementById("date").innerText = gun + "/" + ay + "/" + yil;
     }
   }
+
+  
 };
 
 /* ! Ders Tablosuna yeni satır ekleme  */
@@ -95,3 +97,19 @@ inputElement.addEventListener("input", function () {
 function isNumeric(str) {
   return /^\d+$/.test(str);
 }
+
+document.getElementById("myForm").addEventListener("submit", function(e) {
+  // Formun otomatik olarak gönderilmesini engelleme
+  e.preventDefault();
+
+  var OgrNoValue = document.getElementById("ogrenci_no").value.trim();
+
+  var KayitSekli = document.getElementById("kayit_sekli").value;
+  
+  // Yeni kayıt değilse ve öğrenci numarası boşsa, formu gönderme
+  if (KayitSekli !== "Yeni Kayit" && OgrNoValue === "") {
+      alert("Öğrenci numarası alanı boş bırakılamaz!");
+  } else {
+      this.submit(); // Formu gönder
+  }
+});
