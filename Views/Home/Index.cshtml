@@ -15,38 +15,38 @@
 
 <body>
 
-    <div class="form-container">
-        <div class="form-header">
-            <img src="/image/EtuLogo.png">
-        </div>
-        <form id="loginForm" method="post" autocomplete="off">
-            <div class="mb-3">
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <i class="fas fa-envelope"></i>
+<div class="form-container">
+    <div class="form-header">
+        <img src="/image/EtuLogo.png">
+    </div>
+    <form id="loginForm" method="post" autocomplete="off">
+        <div class="mb-3">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fas fa-envelope"></i>
 
-                    </span>
-                    <input type="email" class="form-control" name="Mail" id="Mail" placeholder="Email" required />
-                </div>
+                </span>
+                <input type="email" class="form-control" name="Mail" id="Mail" placeholder="Email" required />
             </div>
-            <div class="mb-3">
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                    <input type="password" class="form-control" name="Parola" id="Parola" placeholder="Şifre" required />
-                </div>
+        </div>
+        <div class="mb-3">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <input type="password" class="form-control" name="Parola" id="Parola" placeholder="Şifre" required />
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Giriş Yap</button>
-            </div>
-            <div style="flex-direction:column;" class="form-footer">
-                <p>Kayıtlı değil misiniz?<a asp-action="Register">Kaydol</a>
-                </p>
-                <a style="color:#0d6efd;text-decoration:none;border:1px solid blue;padding:0 10px;border-radius:6px;"href="~/Admin/AdminLogin">Yönetici Girişi</a>
-            </div>
-        </form>
-    </div
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        </div>
+        <div style="flex-direction:column;" class="form-footer">
+            <p>Kayıtlı değil misiniz?<a asp-action="Register">Kaydol</a>
+            </p>
+            <a style="color:#0d6efd;text-decoration:none;border:1px solid blue;padding:0 10px;border-radius:6px;"href="~/Admin/AdminLogin">Yönetici Girişi</a>
+        </div>
+    </form>
+</div>
 
    
 
