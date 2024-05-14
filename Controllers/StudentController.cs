@@ -22,6 +22,11 @@ namespace MuafiyetProjesi2024.Controllers
         
         public IActionResult BasvuruFormu()
         {
+            var oturumTC = TempData["oturumAcanTc"] as String;
+            if (oturumTC == null)
+            {
+                return RedirectToAction("Index","Home");
+            }
             return View();
         }
         

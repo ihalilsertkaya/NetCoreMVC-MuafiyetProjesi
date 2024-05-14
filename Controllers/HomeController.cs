@@ -27,9 +27,10 @@ namespace MuafiyetProjesi2024.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        
         public async Task<IActionResult> Index(Kullanici kullanici)
         {
+
              var result = _context.Kullanicilar
                 .Any(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
             //sorguyu yukaridan yapiyoruz. result true veya false dönüyor. Models'daki veri ile veritabani kiyaslaniyor. ??
@@ -56,6 +57,7 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(Kullanici kullanici)
         {
+            ModelState.Clear();
             // Veritabanında kullanıcı var mı kontrol ediyoruz
             var existingUser = await _context.Kullanicilar.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail || x.Tckimlik == kullanici.Tckimlik ) ;
 

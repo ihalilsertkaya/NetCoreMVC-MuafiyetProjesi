@@ -24,13 +24,14 @@
         {
             <div class="alert alert-danger">
                 <ul>
-                    @foreach (var key in ViewData.ModelState.Keys)
-                    {
-                        foreach (var error in ViewData.ModelState[key].Errors)
+                    <ul>
+                        @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
                         {
-                            <li>@error.ErrorMessage</li>
+                            <li>@modelError.ErrorMessage</li>
                         }
-                    }
+                    </ul>
+
+
                 </ul>
             </div>
         }

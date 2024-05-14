@@ -33,6 +33,9 @@ namespace MuafiyetProjesi2024.Controllers
 
             if (admin)
             {
+                var OturumAcanKullanici = _context.AdminKullanicilar
+             .SingleOrDefault(x => x.UserName == adminGiris.UserName && x.Parola == adminGiris.Parola);
+                TempData["oturumAcanYoneticiTc"] = OturumAcanKullanici.Tckimlik;
                 return RedirectToAction("AdminPanel", "Admin");
             }
 
@@ -45,6 +48,11 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpGet]
         public IActionResult AdminPanel()
         {
+            var oturumTC = TempData["oturumAcanYoneticiTc"] as String;
+            if (oturumTC == null)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
             return View();
         }
 
