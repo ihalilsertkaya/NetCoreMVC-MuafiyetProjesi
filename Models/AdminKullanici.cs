@@ -5,9 +5,14 @@ namespace MuafiyetProjesi2024.Models;
 
 public partial class AdminKullanici
 {
-    public string? UserName { get; set; }
+    public string? AdSoyad { get; set; }
 
-    public string Tckimlik { get; set; } = null!;
+    public string? Sifre { get; set; }
 
-    public string? Parola { get; set; }
+    public string? BolumBilgisi { get; set; }
+
+    public string? Yetkisi { get; set; }
+
+    public string? Mail { get; set; }
+
 }

@@ -32,15 +32,18 @@ public partial class AppDbContext : DbContext
     {
         modelBuilder.Entity<AdminKullanici>(entity =>
         {
-            entity.HasKey(e => e.Tckimlik).HasName("PK__AdminKul__4338AEC65A44904D");
 
             entity.ToTable("AdminKullanicilar");
 
-            entity.Property(e => e.Tckimlik)
-                .HasMaxLength(11)
-                .HasColumnName("TCKimlik");
-            entity.Property(e => e.Parola).HasMaxLength(100);
-            entity.Property(e => e.UserName).HasMaxLength(50);
+            entity.Property(e => e.AdSoyad).HasMaxLength(50);
+
+            entity.Property(e => e.Sifre).HasMaxLength(100);
+
+            entity.Property(e => e.BolumBilgisi).HasMaxLength(50);
+
+            entity.Property(e => e.Yetkisi).HasMaxLength(50);
+
+            entity.Property(e => e.Mail).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Basvuru>(entity =>
