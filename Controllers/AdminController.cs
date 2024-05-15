@@ -28,18 +28,16 @@ namespace MuafiyetProjesi2024.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdminLogin(AdminKullanici adminGiris)
         {
+
             var admin = _context.AdminKullanicilar
                 .Any(x => x.Mail == adminGiris.Mail && x.Sifre == adminGiris.Sifre);
 
             if (admin)
             {
-                var OturumAcanKullanici = _context.AdminKullanicilar
-             .SingleOrDefault(x => x.Mail == adminGiris.Mail && x.Sifre == adminGiris.Sifre);
-                TempData["oturumAcanYoneticiTc"] = OturumAcanKullanici.Mail;
+                TempData["oturumAcanYoneticiTc"] = adminGiris.Mail;
                 return RedirectToAction("AdminPanel", "Admin");
             }
-
-            ModelState.AddModelError(string.Empty, "Ge�ersiz kullan�c� ad� veya parola.");
+            ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
 
             return View();
         }
