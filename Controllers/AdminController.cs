@@ -29,13 +29,13 @@ namespace MuafiyetProjesi2024.Controllers
         public async Task<IActionResult> AdminLogin(AdminKullanici adminGiris)
         {
             var admin = _context.AdminKullanicilar
-                .Any(x => x.UserName == adminGiris.UserName && x.Parola == adminGiris.Parola);
+                .Any(x => x.Mail == adminGiris.Mail && x.Sifre == adminGiris.Sifre);
 
             if (admin)
             {
                 var OturumAcanKullanici = _context.AdminKullanicilar
-             .SingleOrDefault(x => x.UserName == adminGiris.UserName && x.Parola == adminGiris.Parola);
-                TempData["oturumAcanYoneticiTc"] = OturumAcanKullanici.Tckimlik;
+             .SingleOrDefault(x => x.Mail == adminGiris.Mail && x.Sifre == adminGiris.Sifre);
+                TempData["oturumAcanYoneticiTc"] = OturumAcanKullanici.Mail;
                 return RedirectToAction("AdminPanel", "Admin");
             }
 

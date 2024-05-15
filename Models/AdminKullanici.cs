@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MuafiyetProjesi2024.Models;
 
@@ -13,6 +14,7 @@ public partial class AdminKullanici
 
     public string? Yetkisi { get; set; }
 
+    [Key]
     public string? Mail { get; set; }
 
 }
