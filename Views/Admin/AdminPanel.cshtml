@@ -22,11 +22,15 @@
      <div class="panels">
       <!-- ! Kullanıcı Bilgisi Paneli -->
        <div class="panel" id="kullaniciPanel">
-        <button class="ekleButton" id="ekleButton">Kullanıcı Ekle</button>
+        <div class="headerPanel">
+          <button id="ekleButton">Kullanıcı Ekle</button>
+          <span class="close" id="kullaniciPanel-close">X</span>
+        </div>
         <div class="kayitFormPanel">
           <div class="form-container">
+            <span style="color:white;" class="close" id="kayitFormPanel-close">X</span>
             <div class="form-header">
-              <img src="/image/EtuLogo.png" />
+              <img src="/image/logo.png" />
             </div>
             <form id="registerForm" method="post" autocomplete="off" enctype="multipart/form-data">
                 <div class="mb-3">
@@ -69,7 +73,7 @@
         </div>
         <!-- ! Kullanıcılar Tablosu -->
         <div class="kullaniciTable">
-          <h1 style="color: white;font-size:2rem;">Kullanıcı Bilgileri</h1>
+          <h1 style="font-size:2rem;">Kullanıcı Bilgileri</h1>
           <table id="userTable">
             <thead>
                 <tr>
@@ -88,7 +92,11 @@
        </div>
        <!-- ! Başvuru Bilgisi Paneli -->
        <div class="panel" id="basvuruPanel">
-           <h1 style="color: white;font-size:2rem;">Başvuru Bilgileri</h1>
+        <div class="headerPanel">
+          <img style="width:2rem;border-radius:50%;" src="/image/Logo.png" />
+          <span class="close" id="basvuruPanel-close">X</span>
+        </div>
+           <h1 style="font-size:2rem;">Başvuru Bilgileri</h1>
            <div class="filtre">
                <select name="filtreSelect" id="filtreSelect">
                    <option value="BilgisayarMuh">Bilgisayar Mühendisliği</option>
