@@ -17,5 +17,7 @@ public partial class Evrak
 
     public string? Tckimlik { get; set; }
 
+    public string? BasvuruBelgesi { get; set; }
+
     public  Kullanici? Kullanici { get; set; }
 }
