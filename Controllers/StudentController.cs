@@ -29,6 +29,10 @@ namespace MuafiyetProjesi2024.Controllers
             }
             return View();
         }
+        public IActionResult BasvuruFormuPdf()
+        {
+            return View();
+        }
         
         [HttpPost]
         public async Task<IActionResult> SubmitApplication(Basvuru basvuruBilgisi, Evrak evrakBilgisi, Ders dersBilgisi, IFormFile Transkript, IFormFile DersIcerik)
