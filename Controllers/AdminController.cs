@@ -21,7 +21,6 @@ namespace MuafiyetProjesi2024.Controllers
 
         public IActionResult AdminLogin()
         {
-            HttpContext.Session.Clear();
             return View();
         }
         
@@ -35,12 +34,8 @@ namespace MuafiyetProjesi2024.Controllers
 
             if (admin)
             {
-                // Oturum verisi oluşturma ve kullanıcı adını saklama
-                HttpContext.Session.SetString("UserMail", adminGiris.Mail);
-                HttpContext.Session.SetString("KullaniciYetki", "1"); //1 stringi admindir
-
-                return RedirectToAction("AdminPanel", "Admin");  
-
+                TempData["oturumAcanYoneticiTc"] = adminGiris.Mail;
+                return RedirectToAction("AdminPanel", "Admin");
             }
             ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
 
@@ -51,13 +46,11 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpGet]
         public IActionResult AdminPanel()
         {
-            if (HttpContext.Session.GetString("UserMail") == null || HttpContext.Session.GetString("KullaniciYetki") == "0") //oturum kapalıysa veya öğrenci ise
+            var oturumTC = TempData["oturumAcanYoneticiTc"] as String;
+            if (oturumTC == null)
             {
-                return RedirectToAction("AdminLogin", "Admin"); //admin girişe at
+                return RedirectToAction("AdminLogin", "Admin");
             }
-
-            // Oturum açık ise, gerekli işlemleri yap
-
             return View();
         }
 

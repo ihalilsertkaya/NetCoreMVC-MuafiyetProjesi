@@ -22,7 +22,6 @@ namespace MuafiyetProjesi2024.Controllers
 
         public IActionResult Index()
         {
-            HttpContext.Session.Clear();
             return View();
         }
 
@@ -41,10 +40,6 @@ namespace MuafiyetProjesi2024.Controllers
                 var OturumAcanKullanici= _context.Kullanicilar
                     .SingleOrDefault(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
                 TempData["oturumAcanTc"] = OturumAcanKullanici.Tckimlik;
-
-                // Oturum verisi oluşturma ve kullanıcı adını saklama
-                HttpContext.Session.SetString("UserMail", kullanici.Mail);
-                HttpContext.Session.SetString("KullaniciYetki", "0"); //0 stringi öğrencidir
                 return RedirectToAction("BasvuruFormu", "Student");
             }
 
@@ -56,7 +51,6 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            HttpContext.Session.Clear();
             return View();
         }
         
