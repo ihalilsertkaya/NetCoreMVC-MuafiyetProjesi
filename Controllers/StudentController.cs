@@ -22,11 +22,18 @@ namespace MuafiyetProjesi2024.Controllers
         
         public IActionResult BasvuruFormu()
         {
-            var oturumTC = TempData["oturumAcanTc"] as String;
-            if (oturumTC == null)
+            if (HttpContext.Session.GetString("UserMail") == null || HttpContext.Session.GetString("KullaniciYetki") != "0") //oturum kapalıysa veya öğrenci değilse
             {
+                //kullanıcıyı ana sayfaya at
                 return RedirectToAction("Index","Home");
             }
+            // Oturum açık ise, gerekli işlemleri yap
+            string usermail = HttpContext.Session.GetString("UserMail");
+            ViewBag.kullaniciMail = usermail;
+
+            string kullaniciyetki = HttpContext.Session.GetString("KullaniciYetki");
+            ViewBag.kullaniciYetki = kullaniciyetki;
+
             return View();
         }
         
