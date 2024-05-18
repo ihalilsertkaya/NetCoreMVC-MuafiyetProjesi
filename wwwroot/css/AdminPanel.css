@@ -54,7 +54,7 @@ body{
     margin-right: 3rem;
 }
 .navbar .PanelButton button{
-   background-color: #1e90ff;
+   background-color: #3366a0;
    color:white;
    border-radius: 6px;
    border: none;
@@ -66,8 +66,7 @@ body{
    cursor: pointer;
 }
 .navbar .PanelButton button:hover{
-  background-color:greenyellow;
-  color: black;
+  background-color:#1e90ff;
 }
 .panels{
     height: auto;
@@ -94,20 +93,33 @@ body{
 .headerPanel{
   display: flex;
   align-items: center;
-  padding:.6rem ;
-  justify-content: space-between;
+  justify-content:right;
+  margin-right: 1rem;
 }
-.headerPanel button{
-  background:#1e90ff;
+.headerPanel div{
+   width: 60%;
+   display:flex;
+   align-items: center;
+   justify-content:space-between;
+   column-gap: 5rem;
+}
+.Eklebutton{
+  display:flex;
+  margin-top:1rem ;
+  margin-bottom: .5rem;
+}
+.Eklebutton button{
+  background:#3366a0;
   width:10%;
   height:2rem;
   border-radius:6px;
   border: none;
   font-size: 1rem;
-  margin-left: 1rem;
+  color:white;
+  margin-left: 4rem;
 }
-.headerPanel button:hover{
-  background:greenyellow;
+.Eklebutton button:hover{
+  background:#1e90ff;
 }
 .close{
   display:flex;
@@ -126,7 +138,7 @@ body{
 #userTable {
     border-collapse: collapse;
     width: 90%;
-    margin: 1rem auto;
+    margin: .2rem auto;
     
 }
 #userTable th, #userTable td {
@@ -137,11 +149,8 @@ body{
 }
 
 #userTable th {
-    background-color:#1e90ff;
-    color:white;
-}
-#userTable td {
-    color:white;
+    background-color:#3366a0;
+    color: white;
 }
 
 /* kayitFormPanel*/
@@ -157,10 +166,10 @@ body{
     padding: 2px 30px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0);
     width:40%;
     height:71vh;
-    background-color: #1e90ff;
+    background-color:#3366a0;
   }
   
   .form-container form input[type="text"],
@@ -198,8 +207,8 @@ body{
     border:none;
   }
   #submit:hover{
-    background-color: greenyellow;
-    color:black;
+    background-color:#1e90ff;
+    color:white;
     border:none;
   }
   .input-group-text {
@@ -217,15 +226,17 @@ body{
     margin-top: 1rem;
   }
   .filtre select{
-    width:30%;
+    width:79%;
     height:30px;
     border-radius:6px;
+    margin-bottom: 1rem;
   }
   .filtre button{
     border-radius:6px;
-    background-color:#1e90ff;
+    background-color:#3366a0;
+    color: white;
     border: none;
   }
   .filtre button:hover{
-    background-color:greenyellow;
+    background-color:#1e90ff;
   }

@@ -84,7 +84,21 @@ namespace MuafiyetProjesi2024.Controllers
 
             return View("AdminPanel", basvuruList);
         }
+        [HttpGet]
+        public async Task<IActionResult> UsersPanel()
+        {
+            var oturumTC = TempData["oturumAcanYoneticiTc"] as string;
+            if (oturumTC == null)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
 
+            var basvurular = _context.Basvurular.AsQueryable();
+
+            var basvuruList = await basvurular.ToListAsync();
+
+            return View("UsersPanel", basvuruList);
+        }
 
     }
 }

@@ -57,8 +57,14 @@ document.addEventListener("DOMContentLoaded", function() {
         
         var kullaniciPanel = document.querySelector("#kullaniciPanel");
         var kayitFormPanel = document.querySelector(".kayitFormPanel");
-        kayitFormPanel.style.display = "none";
-        kullaniciPanel.style.display = "none";
+        if(kayitFormPanel.style.display === "none")
+        {
+            kullaniciPanel.style.display = "none";
+        }
+        else{
+            alert("Lütfen form alanını kapatın!");
+            kullaniciPanel.style.display = "block";
+        }
           
     });
     document.querySelector("#basvuruPanel-close").addEventListener("click", function() {
