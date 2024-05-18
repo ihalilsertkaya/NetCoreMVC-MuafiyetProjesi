@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using MuafiyetProjesi2024.Data;
 using MuafiyetProjesi2024.Models;
 
+
 namespace MuafiyetProjesi2024.Controllers
 {
     public class AdminController : Controller
@@ -42,18 +43,48 @@ namespace MuafiyetProjesi2024.Controllers
             return View();
         }
 
-
         [HttpGet]
-        public IActionResult AdminPanel()
+        public async Task<IActionResult> AdminPanel()
         {
-            var oturumTC = TempData["oturumAcanYoneticiTc"] as String;
+            var oturumTC = TempData["oturumAcanYoneticiTc"] as string;
             if (oturumTC == null)
             {
                 return RedirectToAction("AdminLogin", "Admin");
             }
-            return View();
+
+            var basvurular = _context.Basvurular.AsQueryable();
+
+            var basvuruList = await basvurular.ToListAsync();
+
+            return View("AdminPanel", basvuruList);
         }
 
-   
+        [HttpPost]
+        public async Task<IActionResult> BasvuruFiltrele(string filtreSelect)
+        {
+            /*var oturumTC = TempData["oturumAcanYoneticiTc"] as string;
+            if (oturumTC == null)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }*/
+
+            TempData["oturumAcanYoneticiTc"] = "yoneticiTC";
+
+            var basvurular = _context.Basvurular.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filtreSelect))
+            {
+                filtreSelect = filtreSelect.ToLower();
+                basvurular = basvurular.Where(b =>
+                    b.GeldigiBolum.ToLower().Contains(filtreSelect)
+                );
+            }
+
+            var basvuruList = await basvurular.ToListAsync();
+
+            return View("AdminPanel", basvuruList);
+        }
+
+
     }
 }
