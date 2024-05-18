@@ -100,8 +100,7 @@
                 <table id="userTable">
                     <thead>
                         <tr>
-                            <th>Adı</th>
-                            <th>Soyadı</th>
+                            <th>Adı - Soyadı</th>
                             <th>E-posta</th>
                             <th>Bölüm</th>
                             <th>İşlemler</th>
@@ -135,8 +134,7 @@
             <table id="userTable">
                 <thead>
                     <tr>
-                        <th>Adı</th>
-                        <th>Soyadı</th>
+                        <th>Adı - Soyadı</th>
                         <th>E-posta</th>
                         <th>Bölüm</th>
                         <th>Başvuru Belgesi</th>
@@ -149,7 +147,6 @@
                     @foreach (var basvuru in Model)
                     {
                         <tr>
-                            <td>@basvuru.AdSoyad</td>
                             <td>@basvuru.AdSoyad</td>
                             <td>@basvuru.Mail</td>
                             <td>@basvuru.GeldigiBolum</td>
