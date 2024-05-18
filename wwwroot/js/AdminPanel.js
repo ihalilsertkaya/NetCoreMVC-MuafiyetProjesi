@@ -76,7 +76,19 @@ document.addEventListener("DOMContentLoaded", function() {
         kullaniciPanel.style.display = "none";
           
     });
+    document.getElementById('filtreSelect').addEventListener('change', function () {
+        var filterValue = this.value.toLowerCase();
+        var rows = document.querySelectorAll('#userTable tbody tr');
 
+        rows.forEach(function (row) {
+            var department = row.cells[3].textContent.toLowerCase();
+            if (filterValue === "" || department.includes(filterValue)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    });
 
 });
 
