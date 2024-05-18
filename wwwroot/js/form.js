@@ -86,15 +86,15 @@ window.onload = function () {
     var formData = new FormData(form); // Form verilerini al
   
     var bolumBaskanligiValue = document.getElementById("bolum_baskanligi").value;
-    var adisoyadiValue = document.getElementById("adi_soyadi").value;
-    var tc_noValue = document.getElementById("tc_no").value;
-    var ogrenci_noValue = document.getElementById("ogrenci_no").value;
-    var telefonValue = document.getElementById("telefon").value;
-    var epostaValue = document.getElementById("eposta").value;
-    var kayit_sekliValue = document.getElementById("kayit_sekli").value;
-    var geldigi_UniValue = document.getElementById("geldigi_Uni").value;
-    var geldigi_fakulteValue = document.getElementById("geldigi_fakulte").value;
-    var GeldigiBolumValue = document.getElementById("GeldigiBolum").value;
+    var adisoyadiValue =" : " + "  " +document.getElementById("adi_soyadi").value;
+    var tc_noValue =" : " + " " + document.getElementById("tc_no").value;
+    var ogrenci_noValue =" : " + "  " + document.getElementById("ogrenci_no").value;
+    var telefonValue =" : " + "  " + document.getElementById("telefon").value;
+    var epostaValue =" : " + "  " + document.getElementById("eposta").value;
+    var kayit_sekliValue =" : " + "  " + document.getElementById("kayit_sekli").value;
+    var geldigi_UniValue =" : " + "  " + document.getElementById("geldigi_Uni").value;
+    var geldigi_fakulteValue =" : " + "  " + document.getElementById("geldigi_fakulte").value;
+    var GeldigiBolumValue =" : " + "  " + document.getElementById("GeldigiBolum").value;
 
 
     formData.append("bolum_baskanligi", bolumBaskanligiValue);
