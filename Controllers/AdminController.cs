@@ -37,9 +37,11 @@ namespace MuafiyetProjesi2024.Controllers
             if (admin == null)
             {
                 ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
-                
+                return View();
             }
-
+            
+            string bolumBilgisi = admin.BolumBilgisi;
+            TempData["userBolumBilgisi"] = bolumBilgisi;
             switch (admin.Yetkisi)
             {
                 case "1":
@@ -52,6 +54,30 @@ namespace MuafiyetProjesi2024.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> UsersPanel()
+        {
+            // TempData'dan userBolumBilgisi'ni alıyoruz ve string türüne dönüştürüyoruz
+            var bolumBilgisi = TempData["userBolumBilgisi"] as string;
+            // Eğer bolumBilgisi null veya boş ise, hata gösterebiliriz veya başka bir işlem yapabiliriz
+            if (string.IsNullOrEmpty(bolumBilgisi))
+            {
+                ModelState.AddModelError(string.Empty, "Bölüm bilgisi bulunamadı.");
+                return View("AdminLogin", "Admin"); // Hata view'ını döndürebilirsiniz
+            }
+
+            // Basvurular tablosunu bolumBilgisi'ne göre filtreliyoruz
+            var basvurularBolumeGore = _context.Basvurular
+                .Where(b => b.GeldigiBolum == bolumBilgisi);
+
+            // Filtrelenmiş basvurular listesi
+            var basvuruListBolumeGore = await basvurularBolumeGore.ToListAsync();
+
+            // View'a filtrelenmiş basvuruları döndürüyoruz
+            return View("UsersPanel", basvuruListBolumeGore);
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> AdminPanel()
@@ -87,15 +113,8 @@ namespace MuafiyetProjesi2024.Controllers
 
             return View("AdminPanel", basvuruList);
         }
-        [HttpGet]
-        public async Task<IActionResult> UsersPanel()
-        {
-            var basvurular = _context.Basvurular.AsQueryable();
-
-            var basvuruList = await basvurular.ToListAsync();
-
-            return View("UsersPanel", basvuruList);
-        }
+       
+        
 
     }
 }

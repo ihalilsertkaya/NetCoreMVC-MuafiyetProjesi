@@ -137,15 +137,15 @@
                 </thead>
                 <tbody>
                     <!-- Veriler dinamik olarak buraya eklenecek -->
-                    @foreach (var basvuru in Model)
+                    @foreach (var basvuruBolumeGore in Model)
                     {
                         <tr>
-                            <td>@basvuru.AdSoyad</td>
-                            <td>@basvuru.Mail</td>
-                            <td>@basvuru.GeldigiBolum</td>
-                            <td><a href="/uploads/@($"{basvuru.OgrNo}-Basvuru.pdf")" target="_blank">PDF</a></td>
-                            <td><a href="/uploads/@($"{basvuru.OgrNo}-Transkript.pdf")" target="_blank">PDF</a></td>
-                            <td><a href="/uploads/@($"{basvuru.OgrNo}-DersDokum.pdf")" target="_blank">PDF</a></td>
+                            <td>@basvuruBolumeGore.AdSoyad</td>
+                            <td>@basvuruBolumeGore.Mail</td>
+                            <td>@basvuruBolumeGore.GeldigiBolum</td>
+                            <td><a href="/uploads/@($"{basvuruBolumeGore.OgrNo}-Basvuru.pdf")" target="_blank">PDF</a></td>
+                            <td><a href="/uploads/@($"{basvuruBolumeGore.OgrNo}-Transkript.pdf")" target="_blank">PDF</a></td>
+                            <td><a href="/uploads/@($"{basvuruBolumeGore.OgrNo}-DersDokum.pdf")" target="_blank">PDF</a></td>
                         </tr>
                     }
                 </tbody>
