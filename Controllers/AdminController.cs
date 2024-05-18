@@ -27,18 +27,28 @@ namespace MuafiyetProjesi2024.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AdminLogin(AdminKullanici adminGiris)
+        public async Task<IActionResult> AdminLogin(String Mail, String Sifre)
         {
 
             var admin = _context.AdminKullanicilar
-                .Any(x => x.Mail == adminGiris.Mail && x.Sifre == adminGiris.Sifre);
-
-            if (admin)
+                .FirstOrDefault(x => x.Mail == Mail && x.Sifre == Sifre);
+            
+            
+            if (admin == null)
             {
-                TempData["oturumAcanYoneticiTc"] = adminGiris.Mail;
-                return RedirectToAction("AdminPanel", "Admin");
+                ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
+                
             }
-            ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
+
+            switch (admin.Yetkisi)
+            {
+                case "1":
+                    return RedirectToAction("UsersPanel", "Admin");
+                case "0":
+                    return RedirectToAction("AdminPanel", "Admin");
+                default:
+                    return RedirectToAction("AdminLogin", "Admin");
+            }
 
             return View();
         }
@@ -46,11 +56,6 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminPanel()
         {
-            var oturumTC = TempData["oturumAcanYoneticiTc"] as string;
-            if (oturumTC == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
 
             var basvurular = _context.Basvurular.AsQueryable();
 
@@ -67,9 +72,7 @@ namespace MuafiyetProjesi2024.Controllers
             {
                 return RedirectToAction("AdminLogin", "Admin");
             }*/
-
-            TempData["oturumAcanYoneticiTc"] = "yoneticiTC";
-
+            
             var basvurular = _context.Basvurular.AsQueryable();
 
             if (!string.IsNullOrEmpty(filtreSelect))
@@ -87,12 +90,6 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpGet]
         public async Task<IActionResult> UsersPanel()
         {
-            var oturumTC = TempData["oturumAcanYoneticiTc"] as string;
-            if (oturumTC == null)
-            {
-                return RedirectToAction("AdminLogin", "Admin");
-            }
-
             var basvurular = _context.Basvurular.AsQueryable();
 
             var basvuruList = await basvurular.ToListAsync();
