@@ -71,7 +71,7 @@ body {
 }
 
 .navbar .PanelButton button:hover {
-  background-color: #1e90ff;
+  background-color:lightskyblue;
 }
 
 .panels {
@@ -95,6 +95,7 @@ body {
   max-width: 100%;
   overflow-y: auto;
   overflow-x: auto;
+  opacity: .9;
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -106,7 +107,7 @@ body {
 }
 
 .headerPanel div {
-  width: 60%;
+  width: 58%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -131,7 +132,7 @@ body {
 }
 
 .Eklebutton button:hover {
-  background: #1e90ff;
+  background:lightskyblue;
 }
 
 .close {
@@ -140,13 +141,18 @@ body {
   justify-content: flex-end;
   text-align: right;
   cursor: pointer;
-  font-size: 18px;
-  border-radius: 10px;
+  font-size: 16px;
+  border-radius:50%;
+  padding: 0px 5px 0px 5px ;
   font-weight: bold;
+  border: 1px solid red;
+  background-color:white;
+  color: red;
 }
 
 .close:hover {
-  color: red;
+  background-color:red;
+  color: white;
 }
 
 #userTable {
@@ -162,7 +168,7 @@ body {
 }
 
 #userTable th {
-  background-color: #3366a0;
+  background-color:#3366a0;
   color: white;
 }
 
@@ -201,7 +207,7 @@ body {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0);
   width: 40%;
   height: 71vh;
-  background-color: #3366a0;
+  background-color:lightskyblue;
 }
 
 .form-container form input[type="text"],

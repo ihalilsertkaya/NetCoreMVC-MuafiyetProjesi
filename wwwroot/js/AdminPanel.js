@@ -25,12 +25,22 @@ document.addEventListener("DOMContentLoaded", function() {
         var kayitFormPanel = document.querySelector(".kayitFormPanel");
         var kullaniciTable = document.querySelector(".kullaniciTable");
         var inputFields = kayitFormPanel.querySelectorAll("input");
+        var kullaniciPanel = document.querySelector("#kullaniciPanel");
+        var close = document.querySelector("#kullaniciPanel-close");
 
         kullaniciTable.style.display = "none";
         kayitFormPanel.style.display = "block"; 
         inputFields.forEach(function(input) {
             input.value = "";
         }); 
+        
+        if(kayitFormPanel.style.display === "none")
+        {
+            kullaniciPanel.style.display = "none";
+        }
+        else{
+            close.style.display = "none";
+        }
        
     });
     registerForm.addEventListener("submit", function(event) {
@@ -48,22 +58,26 @@ document.addEventListener("DOMContentLoaded", function() {
         
         var kullaniciTable = document.querySelector(".kullaniciTable");
         var kayitFormPanel = document.querySelector(".kayitFormPanel");
-        
+        var close = document.querySelector("#kullaniciPanel-close");
+
         kullaniciTable.style.display = "block";
         kayitFormPanel.style.display = "none";
+        close.style.display = "block";
+
           
     });
     document.querySelector("#kullaniciPanel-close").addEventListener("click", function() {
         
         var kullaniciPanel = document.querySelector("#kullaniciPanel");
         var kayitFormPanel = document.querySelector(".kayitFormPanel");
+        var close = document.querySelector("#kullaniciPanel-close");
+
         if(kayitFormPanel.style.display === "none")
         {
             kullaniciPanel.style.display = "none";
         }
         else{
-            alert("Lütfen form alanını kapatın!");
-            kullaniciPanel.style.display = "block";
+            close.style.display = "none";
         }
           
     });
