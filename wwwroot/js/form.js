@@ -130,7 +130,7 @@ form.addEventListener('submit', function (event) {
     });
 
     // Ders bilgilerini URL parametrelerine ekle
-    dersBilgileri.forEach(function (ders, index) {
+    dersBilgileri.forEach(function (ders) {
         for (var key in ders) {
             urlParams.append(key, ders[key]);
         }

@@ -8,7 +8,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<div class="container" id="elem">
+<div class="downloadPdf"> 
+      <button class="download">Pdf Olarak İndir</button>
+</div>
+<div class="container" id="pdfObject">
     <!--! Header -->
     <div class="header" >
         <img src="/image/EtuLogo.png" alt="Etu Logo">
@@ -18,7 +21,7 @@
         </h4>
     </div>
     <p class="form-title">Ders Muafiyet Başvuru Dilekçesi</p>
-    <p style="align-self: flex-start; margin-left: 6rem;font-size: 20px;">
+    <p style="align-self: flex-start; margin-left: 6rem;font-size: 17px;">
         Tarih:<span id="date"></span>
     </p>
 
@@ -147,30 +150,38 @@
     <!-- ! End / -->
 </div>
 </div>
-<!-- Download button -->
-<button class="download">Pdf Olarak İndir</button>
+
 <script>
-    let div = document.querySelector("#elem");
+    let div = document.querySelector("#pdfObject");
     let btn = document.querySelector(".download");
+    let tc  = document.querySelector("#tc_no").value;
+    console.log(tc);
     btn.addEventListener('click', () => {
         let opt = {
-            margin:       0.5, // Sayfanın kenar boşluklarını sıfıra ayarla
-            filename:     'document.pdf',
+            margin:       [0.5,0,0,0],
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 dpi: 192,
                 scale: 2,
                 letterRendering: true,
-                shiftX: 0,
-                offset: 0,
-                // Boşluk oluşturan unsurları kaldır
                 scrollX: 0,
                 scrollY: 0
             },
             jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } 
         };
-        html2pdf().from(div).set(opt).save();
+        html2pdf().from(div).set(opt).output('datauristring').then(function(pdfDataUri) {
+        // Yeni sekme aç ve PDF'yi orada göster
+        let pdfWindow = window.open("");
+        pdfWindow.document.write(`<html>
+                    <head>
+                        <title>Muafiyet Başvuru Belgesi</title>
+                    </head>
+                    <body>
+                        <iframe width='100%' height='100%' src='${pdfDataUri}'></iframe>
+                    </body>
+                    </html>`);
+        });
+
     });
 </script>
 
