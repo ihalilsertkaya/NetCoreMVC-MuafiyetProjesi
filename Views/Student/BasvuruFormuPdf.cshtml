@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web Sayfasını PDF Olarak Dönüştürme</title>
+<title>Onaylanan Başvuru Formu</title>
 <link rel="stylesheet" href="/css/formPdf.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -148,28 +148,27 @@
 </div>
 </div>
 <!-- Download button -->
-<button class="download">Download PDF</button>
+<button class="download">Pdf Olarak İndir</button>
 <script>
     let div = document.querySelector("#elem");
     let btn = document.querySelector(".download");
     btn.addEventListener('click', () => {
         let opt = {
-            margin:       0, // Sayfanın kenar boşluklarını sıfıra ayarla
+            margin:       0.5, // Sayfanın kenar boşluklarını sıfıra ayarla
             filename:     'document.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 dpi: 192,
                 scale: 2,
                 letterRendering: true,
-                width: 800,
-                height: 1550,
                 shiftX: 0,
                 offset: 0,
                 // Boşluk oluşturan unsurları kaldır
                 scrollX: 0,
                 scrollY: 0
             },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } 
         };
         html2pdf().from(div).set(opt).save();
     });

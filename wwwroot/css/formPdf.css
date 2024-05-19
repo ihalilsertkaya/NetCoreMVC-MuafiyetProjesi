@@ -11,7 +11,9 @@ body {
     background-attachment: fixed;
     height: auto;
   }
-  
+  * {
+    page-break-inside: avoid;
+  }
   /* ************************************************* */
   /* ! Container */
   .container {
@@ -142,7 +144,9 @@ body {
     padding: 0.3rem;
     text-align: center;
   }
- 
+  thead {
+    display: table-header-group;
+  }
   th {
     background-color:#3366a0;
     color: white;
@@ -154,8 +158,11 @@ body {
     padding: 2px;
     border-radius: 0px;
   }
-  
-  
+
+  #elem {
+    margin-top: 0;
+    padding-top: 0;
+  }
 
   
   
