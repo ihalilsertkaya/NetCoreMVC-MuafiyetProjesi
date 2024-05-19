@@ -166,6 +166,24 @@ body {
   color: white;
 }
 
+#basvuruTable {
+    border-collapse: collapse;
+    width: 90%;
+    margin: .2rem auto;
+}
+
+    #basvuruTable th, #basvuruTable td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    #basvuruTable th {
+        background-color: #3366a0;
+        color: white;
+    }
+
+
 /* kayitFormPanel */
 
 .kayitFormPanel {
