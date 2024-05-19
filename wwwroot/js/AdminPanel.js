@@ -78,10 +78,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     document.getElementById('filtreSelect').addEventListener('change', function () {
         var filterValue = this.value.toLowerCase();
-        var rows = document.querySelectorAll('#userTable tbody tr');
+
+        var rows = document.querySelectorAll('#basvuruTable tbody tr');
 
         rows.forEach(function (row) {
-            var department = row.cells[3].textContent.toLowerCase();
+            var department = row.cells[2].textContent.toLowerCase();
             if (filterValue === "" || department.includes(filterValue)) {
                 row.style.display = "";
             } else {
