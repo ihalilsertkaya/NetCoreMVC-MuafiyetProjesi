@@ -132,20 +132,20 @@ body {
   }
   th,
   td {
-    border: 1px solid #ddd;
+    border: 1px solid black;
     padding: 0.3rem;
     text-align: center;
   }
   .num{
     width:11%;
-    border: 1px solid #ddd;
+    border: 1px solid black;
     padding: 0.3rem;
     text-align: center;
   }
  
-  
   th {
-    background-color: #f2f2f2;
+    background-color:#3366a0;
+    color: white;
   }
   
   td input[type="text"],
@@ -155,13 +155,7 @@ body {
     border-radius: 0px;
   }
   
-  .table_lesson button {
-    background-color: cadetblue;
-    color: white;
-  }
   
-  .table_lesson button:hover {
-    background-color: #45a049;
-  }
+
   
   

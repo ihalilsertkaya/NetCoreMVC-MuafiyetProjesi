@@ -41,8 +41,7 @@ document.getElementById("ekleButton").addEventListener("click", function (event)
         "number",
         "number",
         "text",
-        "text",
-        "number",
+        "number",  
         "number",
         "text",
     ];

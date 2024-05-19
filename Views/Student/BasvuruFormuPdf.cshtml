@@ -87,16 +87,16 @@
             <table id="dersTablosu">
                 <thead>
                 <tr>
-                    <th colspan="4">Daha Önce Aldığım Dersin</th>
-                    <th colspan="4">Muaf Olmak İstediğim Dersin</th>
+                    <th colspan="3">Daha Önce Alınan Ders</th>
+                    <th colspan="4">Muaf Olmak İstenen Ders</th>
                 </tr>
                 <tr>
-                    <th class="Ad">Adı</th>
-                    <th class="num">Kredisi</th>
-                    <th class="num">AKTS'si</th>
-                    <th class="Ad">Adı</th>
-                    <th class="num">Kredisi</th>
-                    <th class="num">AKTS'si</th>
+                    <th>Adı</th>
+                    <th class="num">Kredi</th>
+                    <th class="num">AKTS</th>
+                    <th>Adı</th>
+                    <th class="num">Kredi</th>
+                    <th class="num">AKTS</th>
                     <th class="num">Kodu</th>
                 </tr>
                 </thead>
@@ -152,9 +152,11 @@
 <script>
     let div = document.querySelector("#elem");
     let btn = document.querySelector(".download");
+    let tcNo = document.querySelector("#tc_no").innerText; // Kullanıcı TC Kimlik No'su
+
     btn.addEventListener('click', () => {
         let opt = {
-            margin:       0, // Sayfanın kenar boşluklarını sıfıra ayarla
+            margin:       0,
             filename:     'document.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
@@ -162,16 +164,40 @@
                 scale: 2,
                 letterRendering: true,
                 width: 800,
-                height: 1500,
+                height: 1550,
                 shiftX: 0,
                 offset: 0,
-                // Boşluk oluşturan unsurları kaldır
                 scrollX: 0,
                 scrollY: 0
             },
             jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
         };
-        html2pdf().from(div).set(opt).save();
+        
+        html2pdf().from(div).set(opt).outputPdf().then(function(pdf) {
+            const pdfData = pdf.output('datauristring').split(',')[1];
+            const pdfFilename = `${tcNo}.pdf`;
+
+            // PDF'yi indir
+            pdf.save(pdfFilename);
+
+            // PDF verisini sunucuya gönder
+            fetch('/save-pdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: pdfData, filename: pdfFilename })
+            }).then(response => response.json())
+            .then(data => {
+                if (data.filePath) {
+                    alert('PDF başarıyla kaydedildi: ' + data.filePath);
+                } else {
+                    alert('PDF kaydedilemedi');
+                }
+            }).catch(error => {
+                console.error('Hata:', error);
+            });
+        });
     });
 </script>
 
