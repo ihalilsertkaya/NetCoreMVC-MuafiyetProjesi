@@ -29,5 +29,7 @@ public partial class Basvuru
 
     public string? GeldigiBolum { get; set; }
 
+    public string? BolumBaskanligi { get; set; }
+
     public Kullanici? Kullanici { get; set; }
 }
