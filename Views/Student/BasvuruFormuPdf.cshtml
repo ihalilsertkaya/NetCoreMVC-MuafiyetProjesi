@@ -152,11 +152,9 @@
 <script>
     let div = document.querySelector("#elem");
     let btn = document.querySelector(".download");
-    let tcNo = document.querySelector("#tc_no").innerText; // Kullanıcı TC Kimlik No'su
-
     btn.addEventListener('click', () => {
         let opt = {
-            margin:       0,
+            margin:       0, // Sayfanın kenar boşluklarını sıfıra ayarla
             filename:     'document.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
@@ -167,37 +165,13 @@
                 height: 1550,
                 shiftX: 0,
                 offset: 0,
+                // Boşluk oluşturan unsurları kaldır
                 scrollX: 0,
                 scrollY: 0
             },
             jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
         };
-        
-        html2pdf().from(div).set(opt).outputPdf().then(function(pdf) {
-            const pdfData = pdf.output('datauristring').split(',')[1];
-            const pdfFilename = `${tcNo}.pdf`;
-
-            // PDF'yi indir
-            pdf.save(pdfFilename);
-
-            // PDF verisini sunucuya gönder
-            fetch('/save-pdf', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ data: pdfData, filename: pdfFilename })
-            }).then(response => response.json())
-            .then(data => {
-                if (data.filePath) {
-                    alert('PDF başarıyla kaydedildi: ' + data.filePath);
-                } else {
-                    alert('PDF kaydedilemedi');
-                }
-            }).catch(error => {
-                console.error('Hata:', error);
-            });
-        });
+        html2pdf().from(div).set(opt).save();
     });
 </script>
 
