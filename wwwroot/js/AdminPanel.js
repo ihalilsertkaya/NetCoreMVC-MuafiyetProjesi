@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
         kayitFormPanel.style.display = "none";
           
     });
-
     document.querySelector("#kayitFormPanel-close").addEventListener("click", function() {
         
         var kullaniciTable = document.querySelector(".kullaniciTable");
@@ -66,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           
     });
+    
     document.querySelector("#kullaniciPanel-close").addEventListener("click", function() {
         
         var kullaniciPanel = document.querySelector("#kullaniciPanel");

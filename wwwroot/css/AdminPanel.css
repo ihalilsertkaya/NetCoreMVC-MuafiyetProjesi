@@ -147,48 +147,28 @@ body {
   font-weight: bold;
   border: 1px solid red;
   background-color:white;
-  color: red;
+  color:red;
 }
 
 .close:hover {
-  background-color:red;
+  background-color: red;
   color: white;
 }
 
-#userTable {
+.Table{
   border-collapse: collapse;
   width: 90%;
   margin: .2rem auto;
 }
-
-#userTable th, #userTable td {
+.Table th,td {
   border: 1px solid black;
   padding: 8px;
   text-align: center;
 }
-
-#userTable th {
+.Table th {
   background-color:#3366a0;
   color: white;
 }
-
-#basvuruTable {
-    border-collapse: collapse;
-    width: 90%;
-    margin: .2rem auto;
-}
-
-    #basvuruTable th, #basvuruTable td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: center;
-    }
-
-    #basvuruTable th {
-        background-color: #3366a0;
-        color: white;
-    }
-
 
 /* kayitFormPanel */
 
