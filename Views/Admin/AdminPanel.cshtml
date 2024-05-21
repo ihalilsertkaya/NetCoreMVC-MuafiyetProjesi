@@ -9,20 +9,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/css/AdminPanel.css">
     <style>
-    .closeForm{
-        display:flex;
-        align-items:center;
-        justify-content: flex-end;
-        text-align: right;
-        cursor: pointer;
-        font-size:18px;
-        border-radius:10px;
-        font-weight: bold;
-        color:white;
-    }
-    .closeForm:hover{
-        color:red;
-    }
+        .closeForm {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            text-align: right;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+        }
+
+            .closeForm:hover {
+                color: red;
+            }
     </style>
 </head>
 <body>
@@ -41,15 +42,15 @@
         <div class="panel" id="kullaniciPanel">
             <div class="headerPanel">
                 <div>
-                  <h1 style="font-size:2rem;">Kullanıcı Bilgileri</h1>
-                  <span class="close" id="kullaniciPanel-close">X</span>
+                    <h1 style="font-size:2rem;">Kullanıcı Bilgileri</h1>
+                    <span class="close" id="kullaniciPanel-close">X</span>
                 </div>
             </div>
             <div class="kayitFormPanel">
                 <div class="form-container">
-                      <div>
+                    <div>
                         <span class="closeForm" id="kayitFormPanel-close">X</span>
-                      </div>
+                    </div>
                     <div class="form-header">
                         <img src="/image/logo.png" />
                     </div>
@@ -95,7 +96,7 @@
             <!-- ! Kullanıcılar Tablosu -->
             <div class="kullaniciTable">
                 <div class="Eklebutton">
-                 <button id="ekleButton">Kullanıcı Ekle</button>
+                    <button id="ekleButton">Kullanıcı Ekle</button>
                 </div>
                 <table class="Table" id="userTable">
                     <thead>
@@ -114,20 +115,25 @@
                                 <td>@adminKullanici.AdSoyad</td>
                                 <td>@adminKullanici.Mail</td>
                                 <td>@adminKullanici.BolumBilgisi</td>
-                               
+                                <td>
+                                    <form method="post" action="/Admin/DeleteUser" style="display:inline;">
+                                        <input type="hidden" name="Mail" value="@adminKullanici.Mail" />
+                                        <button type="submit" class="btn btn-danger">Sil</button>
+                                    </form>
+                                    <button class="btn btn-warning">Düzenle</button>
+                                </td>
                             </tr>
                         }
-
                     </tbody>
                 </table>
             </div>
         </div>
- <!-- ! Başvuru Bilgisi Paneli -->
+        <!-- ! Başvuru Bilgisi Paneli -->
         <div class="panel" id="basvuruPanel">
             <div class="headerPanel">
                 <div>
-                  <h1 style="font-size:2rem;">Başvuru Bilgileri</h1>
-                  <span class="close" id="basvuruPanel-close">X</span>
+                    <h1 style="font-size:2rem;">Başvuru Bilgileri</h1>
+                    <span class="close" id="basvuruPanel-close">X</span>
                 </div>
             </div>
             <div class="filtre">
@@ -162,8 +168,7 @@
                             <td>@basvuru.AdSoyad</td>
                             <td>@basvuru.Mail</td>
                             <td>@basvuru.GeldigiBolum</td>
-                            <td><a href="..8/Student/BasvuruFormuPdf?bolum_baskanligi=Bilgisayar+M%C3%BChendisli%C4%9Fi&AdSoyad=hakan&Tckimlik=12345678912&OgrNo=1235465&Tel=123456&Mail=h%40asd&KayitTur=Dikey+Ge%C3%A7i%C5%9F&GeldigiUni=retr&GeldigiFak=sdfgh&GeldigiBolum=sdfg&OncekiDersAdi=Bilgisayar+Programlama&OncekiDersKredisi=2&OncekiDersAkts=3&MuafDersAdi=M%C3%BChendisli%C4%9Fe+Giri%C5%9F&MuafDersKredisi=2&MuafDersAkts=2&MuafDersKodu=e34terf&dersInput_2_1=programlama&dersInput_2_2=3&dersInput_2_3=4&dersInput_2_4=weere&dersInput_2_5=2&dersInput_2_6=3&dersInput_2_7=ddv34&Transkript=%5Bobject+File%5D&DersIcerik=%5Bobject+File%5D&__RequestVerificationToken=CfDJ8C5DNnuT8OpMp34jsd3fmat9_hOCN0fh0yJ3or4IKuGRgVt79kXo0b9p8JhgmOAp__kC23TX-3OHJp-NnTzmoJ4gFR487wNmmjGg9hOAh0kGVAppFfjTyyyMINdRZMflEm8p7qkxXA6P9Szuh7clhKs&bolum_baskanligi=Bilgisayar+M%C3%BChendisli%C4%9Fi&adi_soyadi=+%3A+++hakan&tc_no=+%3A++12345678912&ogrenci_no=+%3A+++1235465&telefon=+%3A+++123456&eposta=+%3A+++h%40asd&kayit_sekli=+%3A+++Dikey+Ge%C3%A7i%C5%9F&geldigi_Uni=+%3A+++retr&geldigi_fakulte=+%3A+++sdfgh&GeldigiBolum=+%3A+++sdfg&dersInput_1_1=Bilgisayar+Programlama&dersInput_1_2=2&dersInput_1_3=3&dersInput_1_4=M%C3%BChendisli%C4%9Fe+Giri%C5%9F&dersInput_1_5=2&dersInput_1_6=2&dersInput_1_7=e34terf&dersInput_2_1=programlama&dersInput_2_2=3&dersInput_2_3=4&dersInput_2_4=weere&dersInput_2_5=2&dersInput_2_6=3&dersInput_2_7=ddv34:158 undefined
-BasvuruFormuPdf?bolum_baskanligi=Bilgisayar+M%C3%BChendisli%C4%9Fi&AdSoyad=hakan&Tckimlik=12345678912&OgrNo=1235465&Tel=123456&Mail=h%40asd&KayitTur=Dikey+Ge%C3%A7i%C5%9F&GeldigiUni=retr&GeldigiFak=sdfgh&GeldigiBolum=sdfg&OncekiDersAdi=Bilgisayar+Programlama&OncekiDersKredisi=2&OncekiDersAkts=3&MuafDersAdi=M%C3%BChendisli%C4%9Fe+Giri%C5%9F&MuafDersKredisi=2&MuafDersAkts=2&MuafDersKodu=e34terf&dersInput_2_1=programlama&dersInput_2_2=3&dersInput_2_3=4&dersInput_2_4=weere&dersInput_2_5=2&dersInput_2_6=3&dersInput_2_7=ddv34&Transkript=%5Bobject+File%5D&DersIcerik=%5Bobject+File%5D&__RequestVerificationToken=CfDJ8C5DNnuT8OpMp34jsd3fmat9_hOCN0fh0yJ3or4IKuGRgVt79kXo0b9p8JhgmOAp__kC23TX-3OHJp-NnTzmoJ4gFR487wNmmjGg9hOAh0kGVAppFfjTyyyMINdRZMflEm8p7qkxXA6P9Szuh7clhKs&bolum_baskanligi=Bilgisayar+M%C3%BChendisli%C4%9Fi&adi_soyadi=+%3A+++hakan&tc_no=+%3A++12345678912&ogrenci_no=+%3A+++1235465&telefon=+%3A+++123456&eposta=+%3A+++h%40asd&kayit_sekli=+%3A+++Dikey+Ge%C3%A7i%C5%9F&geldigi_Uni=+%3A+++retr&geldigi_fakulte=+%3A+++sdfgh&GeldigiBolum=+%3A+++sdfg&dersInput_1_1=Bilgisayar+Programlama&dersInput_1_2=2&dersInput_1_3=3&dersInput_1_4=M%C3%BChendisli%C4%9Fe+Giri%C5%9F&dersInput_1_5=2&dersInput_1_6=2&dersInput_1_7=e34terf&dersInput_2_1=programlama&dersInput_2_2=3&dersInput_2_3=4&dersInput_2_4=weere&dersInput_2_5=2&dersInput_2_6=3&dersInput_2_7=ddv34:174 data:application/pdf;filename=generated.pdf;base64,JVBERi0xLjMKJbrfrOAKMyAwIG9iago8PC9UeXBlIC9QYWdlCi9QYXJlbnQgMSAwIFIKL1Jlc291cmNlcyAyIDAgUgovTWVkaWFCb3ggWzAgMCA1OTUuMjc5OTk5OTk5OTk5OTcyNyA4NDEuODg5OTk5OTk5OTk5OTg2NF0KL0NvbnRlbnRzIDQgMCBSCj4+CmVuZG9iago0IDAgb2JqCjw8Ci9MZW5ndGggOTEKPj4Kc3RyZWFtCjE0LjQwMTgwMDAwMDAwMDAwMTUgdwowIEcKcQo1OTUuMjc5OTk5OTk5OTk5OTcyNyAwIDAgODA1Ljg4OTk5OTk5OTk5OTk4NjQgMC4gMC4gY20KL0kwIERvClEKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8L1R5cGUgL1BhZ2UKL1BhcmVudCAxIDAgUgovUmVzb3VyY2VzIDIgMCBSCi9NZWRpYUJveCBbMCAwIDU5NS4yNzk5OTk5OTk5OTk5NzI3IDg0MS44ODk5OTk5OTk5OTk5ODY0XQovQ29udGVudHMgNiAwIFIKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0xlbmd0aCAxMDkKPj4Kc3RyZWFtCjE0LjQwMTgwMDAwMDAwMDAwMTUgdwowIEcKcQo1OTUuMjc5OTk5OTk5OTk5OTcyNyAwIDAgMjg3LjUxODc0MDU1NDE1NjEyNDcgMC4gNTE4LjM3MTI1OTQ0NTg0Mzg2MTYgY20KL0kxIERvClEKZW5kc3RyZWFtCmVuZG9iagoxIDAgb2JqCjw8L1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUiA1IDAgUiBdCi9Db3VudCAyCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9UeXBlIC9Gb250Ci9CYXNlRm9udCAvSGVsdmV0aWNhCi9TdWJ0eXBlIC9UeXBlMQovRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwovRmlyc3RDaGFyIDMyCi9MYXN0Q2hhciAyNTUKPj4KZW5kb2JqCjggMCBvYmoKPDwKL1R5cGUgL0ZvbnQKL0Jhc2VGb250IC9IZWx2ZXRpY2EtQm9sZAovU3VidHlwZSAvVHlwZTEKL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKL0ZpcnN0Q2hhciAzMgovTGFzdENoYXIgMjU1Cj4+CmVuZG9iago5IDAgb2JqCjw8Ci9UeXBlIC9Gb250Ci9CYXNlRm9udCAvSGVsdmV0aWNhLU9ibGlxdWUKL1N1YnR5cGUgL1R5cGUxCi9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCi9GaXJzdENoYXIgMzIKL0xhc3RDaGFyIDI1NQo+PgplbmRvYmoKMTAgMCBvYmoKPDwKL1R5cGUgL0ZvbnQKL0Jhc2VGb250IC9IZWx2ZXRpY2EtQm9sZE9ibGlxdWUKL1N1YnR5cGUgL1R5cGUxCi9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCi9GaXJzdENoYXIgMzIKL0xhc3RDaGFyIDI1NQo+PgplbmRvYmoKMTEgMCBvYmoKPDwKL1R5cGUgL0ZvbnQKL0Jhc2VGb250IC9Db3VyaWVyCi9TdWJ0eXBlIC9UeXBlMQovRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwovRmlyc3RDaGFyIDMyCi9MYXN0Q2hhciAyNTUKPj4KZW5kb2JqCjEyIDAgb2JqCjw8Ci9UeXBlIC9Gb250Ci9CYXNlRm9udCAvQ291cmllci1Cb2xkCi9TdWJ0eXBlIC9UeXBlMQovRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwovRmlyc3RDaGFyIDMyCi9MYXN0Q2hhciAyNTUKPj4KZW5kb2JqCjEzIDAgb2JqCjw8Ci9UeXBlIC9Gb250Ci9CYXNlRm9udCAvQ291cmllci1PYmxpcXVlCi9TdWJ0eXBlIC9UeXBlMQovRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwovRmlyc3RDaGFyIDMyCi9MYXN0Q2hhciAyNTUKPj4KZW5kb2JqCjE0IDAgb2JqCjw8Ci9UeXBlIC9Gb250Ci9CYXNlRm9udCAvQ291cmllci1Cb2xkT2JsaXF1ZQovU3VidHlwZSAvVHlwZTEKL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKL0ZpcnN0Q2hhciAzMgovTGFzdENoYXIgMjU1Cj4+CmVuZG9iagoxNSAwIG9iago8PAovVHlwZSAvRm9udAovQmFzZUZvbnQgL1RpbWVzLVJvbWFuCi9TdWJ0eXBlIC9UeXBlMQovRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwovRmlyc3RDaGFyIDMyCi9MYXN0Q2hhciAyNTUKPj4KZW5kb2JqCjE2IDAgb2JqCjw8Ci9UeXBlIC9Gb250Ci9CYXNlRm9udCAvVGltZXMtQm9sZAovU3VidHlwZSAvVHlwZTEKL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKL0ZpcnN0Q2hhciAzMgovTGFzdENoYXIgMjU1Cj4+CmVuZG9iagoxNyAwIG9iago8PAovVHlwZSAvRm9udAovQmFzZUZvbnQgL1RpbWVzLUl0YWxpYwovU3VidHlwZSAvVHlwZTEKL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKL0ZpcnN0Q2hhciAzMgovTGFzdENoYXIgMjU1Cj4+CmVuZG9iagoxOCAwIG9iago8PAovVHlwZSAvRm9udAovQmFzZUZvbnQgL1RpbWVzLUJvbGRJdGFsaWMKL1N1YnR5cGUgL1R5cGUxCi9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCi9GaXJzdENoYXIgMzIKL0xhc3RDaGFyIDI1NQo+PgplbmRvYmoKMTkgMCBvYmoKPDwKL1R5cGUgL0ZvbnQKL0Jhc2VGb250IC9aYXBmRGluZ2JhdHMKL1N1YnR5cGUgL1R5cGUxCi9GaXJzdENoYXIgMzIKL0xhc3RDaGFyIDI1NQo+PgplbmRvYmoKMjAgMCBvYmoKPDwKL1R5cGUgL0ZvbnQKL0Jhc2VGb250IC9TeW1ib2wKL1N1YnR5cGUgL1R5cGUxCi9GaXJzdENoYXIgMzIKL0xhc3RDaGFyIDI1NQo+PgplbmRvYmoKMjEgMCBvYmoKPDwKL1R5cGUgL1hPYmplY3QKL1N1YnR5cGUgL0ltYWdlCi9XaWR0aCAxNTg4Ci9IZWlnaHQgMjE0OQovQ29sb3JTcGFjZSAvRGV2aWNlUkdCCi9CaXRzUGVyQ29tcG9uZW50IDgKL0xlbmd0aCAyMTY1MzQKL0ZpbHRlciAvRENURGVjb2RlCj4+CnN0cmVhbQr/2P/gABBKRklGAAEBAAABAAEAAP/iAdhJQ0NfUFJPRklMRQABAQAAAcgAAAAABDAAAG1udHJSR0IgWFlaIAfgAAEAAQAAAAAAAGFjc3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAD21gABAAAAANMtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACWRlc2MAAADwAAAAJHJYWVoAAAEUAAAAFGdYWVoAAAEoAAAAFGJYWVoAAAE8AAAAFHd0cHQAAAFQAAAAFHJUUkMAAAFkAAAAKGdUUkMAAAFkAAAAKGJUUkMAAAFkAAAAKGNwcnQAAAGMAAAAPG1sdWMAAAAAAAAAAQAAAAxlblVTAAAACAAAABwAcwBSAEcAQlhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z1hZWiAAAAAAAAD21gABAAAAANMtcGFyYQAAAAAABAAAAAJmZgAA8qcAAA1ZAAAT0AAAClsAAAAAAAAAAG1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANv/bAEMAAQEBAQEBAQEBAQEBAQEBAgEBAQEBAgEBAQICAgICAgICAgMDBAMDAwMDAgIDBAMDBAQEBAQCAwUFBAQFBAQEBP/bAEMBAQEBAQEBAgEBAgQDAgMEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBP/AABEICGUGNAMBIgACEQEDEQH/xAAfAAEAAwADAQEBAQEAAAAAAAAACAkKBgcLBQQDAgH/xAByEAABAwQBAwEFBAUGCAQOAyEAAgMEAQUGBwgJERITChQaIagVIljWFiMxaeYXOUFReLYYGSQyOmF3tTc4drQlJjM0QllxdHWBmLKz1TU2Q1ZXcnmUlZa30tPUJ1WRl7EoREpSU1RigoOJhYeTo6TCxf/EABwBAQABBQEBAAAAAAAAAAAAAAAFAgQGBwgDAf/EAEARAQACAQMDAgQDBQUFCAMAAAABAgMEBREGEiExQRMiUWEHMnEUI1KBkRVCwdHwFiRicqEzNFOCkpPh8aOx0//aAAwDAQACEQMRAD8A38AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" target="_blank">PDF</a></td>
+                            <td><a href="/uploads/@($"{basvuru.OgrNo}-Basvuru.pdf")" target="_blank">PDF</a></td>
                             <td><a href="/uploads/@($"{basvuru.OgrNo}-Transkript.pdf")" target="_blank">PDF</a></td>
                             <td><a href="/uploads/@($"{basvuru.OgrNo}-DersDokum.pdf")" target="_blank">PDF</a></td>
                         </tr>
