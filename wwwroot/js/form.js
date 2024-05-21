@@ -76,13 +76,7 @@ document.getElementById("ekleButton").addEventListener("click", function (event)
 });
 
 var form = document.querySelector('form');
-<<<<<<< HEAD
 form.addEventListener('submit', function () {
-
-=======
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
->>>>>>> 593b2396a22b596d9d547ee8077e80b81f246697
     
     var formData = new FormData(form); // Form verilerini al
 
