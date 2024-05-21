@@ -24,7 +24,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdminLogin(String Mail, String Sifre)
@@ -32,14 +32,14 @@ namespace MuafiyetProjesi2024.Controllers
 
             var admin = _context.AdminKullanicilar
                 .FirstOrDefault(x => x.Mail == Mail && x.Sifre == Sifre);
-
-
+            
+            
             if (admin == null)
             {
                 ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
                 return View();
             }
-
+            
             string bolumBilgisi = admin.BolumBilgisi;
             TempData["userBolumBilgisi"] = bolumBilgisi;
             switch (admin.Yetkisi)
@@ -52,25 +52,29 @@ namespace MuafiyetProjesi2024.Controllers
                     return RedirectToAction("AdminLogin", "Admin");
             }
 
-
+            
         }
 
         [HttpGet]
         public async Task<IActionResult> UsersPanel()
         {
+            // TempData'dan userBolumBilgisi'ni alıyoruz ve string türüne dönüştürüyoruz
             var bolumBilgisi = TempData["userBolumBilgisi"] as string;
-
+            // Eğer bolumBilgisi null veya boş ise, hata gösterebiliriz veya başka bir işlem yapabiliriz
             if (string.IsNullOrEmpty(bolumBilgisi))
             {
                 ModelState.AddModelError(string.Empty, "Bölüm bilgisi bulunamadı.");
-                return View("AdminLogin", "Admin");
+                return View("AdminLogin", "Admin"); // Hata view'ını döndürebilirsiniz
             }
 
+            // Basvurular tablosunu bolumBilgisi'ne göre filtreliyoruz
             var basvurularBolumeGore = _context.Basvurular
                 .Where(b => b.GeldigiBolum == bolumBilgisi);
 
+            // Filtrelenmiş basvurular listesi
             var basvuruListBolumeGore = await basvurularBolumeGore.ToListAsync();
 
+            // View'a filtrelenmiş basvuruları döndürüyoruz
             return View("UsersPanel", basvuruListBolumeGore);
         }
 
@@ -92,8 +96,14 @@ namespace MuafiyetProjesi2024.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> BasvuruFiltrele(string filtreSelect)
+        public async Task<IActionResult> BasvuruFiltrele(string filtreSelect) // Silinebilir Kontrol edilsin
         {
+            /*var oturumTC = TempData["oturumAcanYoneticiTc"] as string;
+            if (oturumTC == null)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }*/
+            
             var basvurular = _context.Basvurular.AsQueryable();
 
             if (!string.IsNullOrEmpty(filtreSelect))
@@ -108,21 +118,8 @@ namespace MuafiyetProjesi2024.Controllers
 
             return View("AdminPanel", basvuruList);
         }
+       
+        
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteUser(string email)
-        {
-            var adminKullanici = await _context.AdminKullanicilar.FindAsync(email);
-            if (adminKullanici == null)
-            {
-                return NotFound();
-            }
-
-            _context.AdminKullanicilar.Remove(adminKullanici);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("AdminPanel");
-        }
     }
 }
