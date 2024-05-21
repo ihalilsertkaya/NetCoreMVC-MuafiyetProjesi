@@ -76,8 +76,8 @@ document.getElementById("ekleButton").addEventListener("click", function (event)
 });
 
 var form = document.querySelector('form');
-form.addEventListener('submit', function () {
-    
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
     var formData = new FormData(form); // Form verilerini al
 
     var bolumBaskanligiValue = document.getElementById("bolum_baskanligi").value;
@@ -140,6 +140,7 @@ form.addEventListener('submit', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    
     var urlParams = new URLSearchParams(window.location.search);
 
     // Her bir form verisini uygun alanlara yerleştir
