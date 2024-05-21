@@ -78,6 +78,7 @@ document.getElementById("ekleButton").addEventListener("click", function (event)
 var form = document.querySelector('form');
 form.addEventListener('submit', function () {
 
+    
     var formData = new FormData(form); // Form verilerini al
 
     var bolumBaskanligiValue = document.getElementById("bolum_baskanligi").value;
