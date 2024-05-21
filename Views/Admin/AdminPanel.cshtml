@@ -1,4 +1,4 @@
-@model List<MuafiyetProjesi2024.Models.Basvuru>
+@model MuafiyetProjesi2024.Models.AdminViewModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,6 +108,16 @@
                     </thead>
                     <tbody>
                         <!-- Veriler dinamik olarak buraya eklenecek -->
+                        @foreach (var adminKullanici in Model.AdminKullanicilar)
+                        {
+                            <tr>
+                                <td>@adminKullanici.AdSoyad</td>
+                                <td>@adminKullanici.Mail</td>
+                                <td>@adminKullanici.BolumBilgisi</td>
+                               
+                            </tr>
+                        }
+
                     </tbody>
                 </table>
             </div>
@@ -146,7 +156,7 @@
                 </thead>
                 <tbody>
                     <!-- Veriler dinamik olarak buraya eklenecek -->
-                    @foreach (var basvuru in Model)
+                    @foreach (var basvuru in Model.Basvurular)
                     {
                         <tr>
                             <td>@basvuru.AdSoyad</td>

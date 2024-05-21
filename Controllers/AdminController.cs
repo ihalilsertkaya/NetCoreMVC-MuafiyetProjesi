@@ -52,7 +52,7 @@ namespace MuafiyetProjesi2024.Controllers
                     return RedirectToAction("AdminLogin", "Admin");
             }
 
-            return View();
+            
         }
 
         [HttpGet]
@@ -82,16 +82,21 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminPanel()
         {
+            var basvurular = await _context.Basvurular.ToListAsync();
+            var adminKullanicilar = await _context.AdminKullanicilar.ToListAsync();
 
-            var basvurular = _context.Basvurular.AsQueryable();
+            var viewModel = new AdminViewModel
+            {
+                Basvurular = basvurular,
+                AdminKullanicilar = adminKullanicilar
+            };
 
-            var basvuruList = await basvurular.ToListAsync();
-
-            return View("AdminPanel", basvuruList);
+            return View("AdminPanel", viewModel);
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> BasvuruFiltrele(string filtreSelect)
+        public async Task<IActionResult> BasvuruFiltrele(string filtreSelect) // Silinebilir Kontrol edilsin
         {
             /*var oturumTC = TempData["oturumAcanYoneticiTc"] as string;
             if (oturumTC == null)
