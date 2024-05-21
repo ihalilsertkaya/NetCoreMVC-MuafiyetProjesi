@@ -136,7 +136,9 @@ form.addEventListener('submit', function () {
     });
 
     // İkinci sayfaya geçiş yap
-    window.location.href = "BasvuruFormuPdf?" + urlParams.toString();
+    window.open("BasvuruFormuPdf?" + urlParams.toString(), "_blank");
+    //alert("BasvuruFormuPdf?" + urlParams.toString());
+    form.submit();
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -170,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ders bilgilerini tabloya ekle
     for (var row in dersBilgileri) {
-        var newRow = document.createElement("tr");
+         var newRow = document.createElement("tr");
         for (var col = 1; col <= 7; col++) { 
             var cell = document.createElement("td");
             var input = document.createElement("input");

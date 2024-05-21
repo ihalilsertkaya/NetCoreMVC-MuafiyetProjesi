@@ -81,7 +81,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> SavePDF()
         {
             var formData = await Request.ReadFormAsync();
