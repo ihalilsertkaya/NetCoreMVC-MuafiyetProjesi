@@ -84,11 +84,11 @@ body {
 }
 
 .panel {
-  margin-top: 12rem;
-  margin-bottom: 5rem;
+  margin-top: 11rem;
+  margin-bottom: 4rem;
   display: none;
   width: 95%;
-  height: 85vh;
+  height: 86vh;
   border-radius: 8px;
   text-align: center;
   background-color: white;
@@ -181,13 +181,13 @@ body {
 
 .form-container {
   margin: 0 auto;
-  padding: 2px 30px;
+  padding: 1px 30px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0);
   width: 40%;
-  height: 71vh;
-  background-color:lightskyblue;
+  height: 77vh;
+  background-color:dodgerblue;
 }
 
 .form-container form input[type="text"],
@@ -221,7 +221,7 @@ body {
 }
 
 #submit:hover {
-  background-color: #1e90ff;
+  background-color:blue;
   color: white;
   border: none;
 }
@@ -237,27 +237,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: 1rem;
   margin-top: 1rem;
 }
 
 .filtre select {
-  width: 79%;
+  width:100%;
   height: 30px;
   border-radius: 6px;
   margin-bottom: 1rem;
 }
 
-.filtre button {
-  border-radius: 6px;
-  background-color: #3366a0;
-  color: white;
-  border: none;
-}
-
-.filtre button:hover {
-  background-color: #1e90ff;
-}
 
 /* Responsive Design */
 @media (max-width: 1200px) {
@@ -330,7 +319,4 @@ body {
       width: 70%;
   }
 
-  .filtre button {
-      width: 20%;
-  }
 }

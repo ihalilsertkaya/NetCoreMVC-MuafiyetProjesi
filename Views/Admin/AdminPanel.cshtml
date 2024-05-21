@@ -60,15 +60,15 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-id-card"></i>
                                 </span>
-                                <input type="text" class="form-control" name="Uname" id="Uname" placeholder="Adı" required />
+                                <input type="text" class="form-control" name="UnameSurname" id="UnameSurname" placeholder="Adı-Soyadı" required />
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text">
-                                    <i class="fas fa-id-card"></i>
+                                    <i class="fas fa-lock"></i>
                                 </span>
-                                <input type="text" class="form-control" name="Usurname" id="Usurname" placeholder="Soyadı" required />
+                                <input type="password" class="form-control" name="Upassword" id="Upassword" placeholder="Şifre" required />
                             </div>
                         </div>
                         <div class="mb-3">
@@ -85,6 +85,14 @@
                                     <i class="fas fa-building"></i>
                                 </span>
                                 <input type="text" class="form-control" name="Udepartman" id="Udepartman" placeholder="Bölüm" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                                <input type="text" class="form-control" name="Uauthority" id="Uauthority" placeholder="Yetki" required />
                             </div>
                         </div>
                         <div class="mb-3">
@@ -139,14 +147,13 @@
             <div class="filtre">
                 <form method="post" action="/Admin/BasvuruFiltrele">
                     <select name="filtreSelect" id="filtreSelect">
-                        <option value="">Seçiniz</option>
+                        <option value="">Bölüm Filtrele</option>
                         <option value="Bilgisayar Mühendisliği">Bilgisayar Mühendisliği</option>
                         <option value="Elektrik Elektronik Mühendisliği">Elektrik Elektronik Mühendisliği</option>
                         <option value="Endüstri Mühendisliği">Endüstri Mühendisliği</option>
                         <option value="Makine Mühendisliği">Makine Mühendisliği</option>
                         <option value="Mimarlık">Mimarlık</option>
                     </select>
-                    <button type="submit" id="filtreButton">Filtrele</button>
                 </form>
             </div>
             <table class="Table" id="basvuruTable">
@@ -182,6 +189,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="/js/AdminPanel.js"></script>
+    <script src="/js/Admin.js"></script>
 </body>
 </html>
