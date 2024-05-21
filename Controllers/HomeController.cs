@@ -81,7 +81,32 @@ namespace MuafiyetProjesi2024.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-    
+        [HttpPost]
+        public async Task<IActionResult> SavePDF()
+        {
+            var formData = await Request.ReadFormAsync();
+            var pdfBase64 = formData["pdf"];
+
+            if (string.IsNullOrEmpty(pdfBase64))
+            {
+                return BadRequest("PDF verisi alınamadı");
+            }
+
+            // PDF'yi base64 formatından byte dizisine çevir
+            byte[] pdfBytes = Convert.FromBase64String(pdfBase64);
+
+            // Dosya adını ve yolunu belirle
+            string fileName = $"MuafiyetBasvuru_{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf";
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdfFiles", fileName);
+
+            // PDF'yi sunucuda kaydet
+            await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);
+
+            // Dosya yolunu veritabanına kaydet (örnek)
+            // await _yourDbContext.SaveFilePathAsync(fileName, filePath);
+
+            return Json(new { filePath = filePath });
+        }
     }
     
 }
