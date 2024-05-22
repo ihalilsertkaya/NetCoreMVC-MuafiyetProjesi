@@ -97,7 +97,7 @@ namespace MuafiyetProjesi2024.Controllers
 
             // Dosya adını ve yolunu belirle
             string fileName = $"MuafiyetBasvuru_{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf";
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdfFiles", fileName);
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
 
             // PDF'yi sunucuda kaydet
             await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);
