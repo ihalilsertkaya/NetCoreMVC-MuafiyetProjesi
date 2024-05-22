@@ -185,6 +185,7 @@ body {
   display: none;
 }
 
+
 .form-container {
   margin: 0 auto;
   padding: 1px 30px;
@@ -252,7 +253,16 @@ body {
   border-radius: 6px;
   margin-bottom: 1rem;
 }
-
+.editButton{
+  background-color: #3366a0;
+  color: white;
+  border-radius: 6px;
+}
+.editButton:hover{
+  background-color:lightskyblue;
+  color: white;
+  border-radius: 6px;
+}
 
 /* Responsive Design */
 @media (max-width: 1200px) {

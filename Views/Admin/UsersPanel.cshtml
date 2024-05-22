@@ -36,82 +36,7 @@
         </div>
     </nav>
     <div class="panels">
-        <!-- ! Kullanıcı Bilgisi Paneli -->
-        <div class="panel" id="kullaniciPanel">
-            <div class="headerPanel">
-                <div>
-                  <h1 style="font-size:2rem;">Kullanıcı Bilgileri</h1>
-                  <span class="close" id="kullaniciPanel-close">X</span>
-                </div>
-            </div>
-            <div class="kayitFormPanel">
-                <div class="form-container">
-                      <div>
-                        <span class="closeForm" id="kayitFormPanel-close">X</span>
-                      </div>
-                    <div class="form-header">
-                        <img src="/image/logo.png" />
-                    </div>
-                    <form id="registerForm" method="post" autocomplete="off" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="fas fa-id-card"></i>
-                                </span>
-                                <input type="text" class="form-control" name="Uname" id="Uname" placeholder="Adı" required />
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="fas fa-id-card"></i>
-                                </span>
-                                <input type="text" class="form-control" name="Usurname" id="Usurname" placeholder="Soyadı" required />
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <input type="email" class="form-control" name="Uemail" id="Uemail" placeholder="Email" required />
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="fas fa-building"></i>
-                                </span>
-                                <input type="text" class="form-control" name="Udepartman" id="Udepartman" placeholder="Bölüm" required />
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary" id="submit">Kaydet</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- ! Kullanıcılar Tablosu -->
-            <div class="kullaniciTable">
-                <div class="Eklebutton">
-                 <button id="ekleButton">Kullanıcı Ekle</button>
-                </div>
-                <table id="userTable">
-                    <thead>
-                        <tr>
-                            <th>Adı - Soyadı</th>
-                            <th>E-posta</th>
-                            <th>Bölüm</th>
-                            <th>İşlemler</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Veriler dinamik olarak buraya eklenecek -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
- <!-- ! Başvuru Bilgisi Paneli -->
+        <!-- ! Başvuru Bilgisi Paneli -->
         <div class="panel" id="basvuruPanel">
             <div class="headerPanel">
                 <div>
@@ -124,7 +49,7 @@
                 
                 </form>
             </div>
-            <table id="basvuruTable">
+            <table class="Table" id="basvuruTable">
                 <thead>
                     <tr>
                         <th>Adı - Soyadı</th>
