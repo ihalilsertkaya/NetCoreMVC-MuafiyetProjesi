@@ -149,7 +149,7 @@
     </form>
     <!-- ! End / -->
 </div>
-
+</div>
 <script>
     let div = document.querySelector("#pdfObject");
     let btn = document.querySelector(".download");
@@ -187,8 +187,6 @@
             // FormData oluştur
             let formData = new FormData();
             formData.append('pdf', base64PDF);
-            formData.append('ogrTC', document.getElementById('tc_no').textContent); // Öğrenci TC kimlik numarası
-
 
             // AJAX ile PDF'yi gönder
             fetch('/Home/SavePDF', {

@@ -40,18 +40,6 @@ namespace MuafiyetProjesi2024.Controllers
                 var OturumAcanKullanici= _context.Kullanicilar
                     .SingleOrDefault(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
                 TempData["oturumAcanTc"] = OturumAcanKullanici.Tckimlik;
-                var basvuruVarMi = _context.Basvurular.Any(b => b.Tckimlik == OturumAcanKullanici.Tckimlik);
-                if (basvuruVarMi)
-                {
-                    TempData["BasvuruMevcutMu"] = "1";
-                    Debug.WriteLine("true");
-                }
-                else
-                {
-                    TempData["BasvuruMevcutMu"] = "0";
-                    Debug.WriteLine("false");
-                }
-
                 return RedirectToAction("BasvuruFormu", "Student");
             }
 
@@ -98,7 +86,6 @@ namespace MuafiyetProjesi2024.Controllers
         {
             var formData = await Request.ReadFormAsync();
             var pdfBase64 = formData["pdf"];
-            string ogrTC = formData["ogrTC"].ToString();
 
             if (string.IsNullOrEmpty(pdfBase64))
             {
@@ -109,8 +96,8 @@ namespace MuafiyetProjesi2024.Controllers
             byte[] pdfBytes = Convert.FromBase64String(pdfBase64);
 
             // Dosya adını ve yolunu belirle
-            string fileName = $"{ogrTC}-Muafiyet.pdf";
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "uploads", fileName);
+            string fileName = $"MuafiyetBasvuru_{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf";
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdfFiles", fileName);
 
             // PDF'yi sunucuda kaydet
             await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);

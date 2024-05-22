@@ -61,7 +61,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-id-card"></i>
                                 </span>
-                                <input type="text" class="form-control" name="AdSoyad" id="UnameSurname" placeholder="Adı-Soyadı" required />
+                                <input type="text" class="form-control" name="UnameSurname" id="UnameSurname" placeholder="Adı-Soyadı" required />
                             </div>
                         </div>
                         <div class="mb-3">
@@ -69,7 +69,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                <input type="password" class="form-control" name="Sifre" id="Upassword" placeholder="Şifre" required />
+                                <input type="password" class="form-control" name="Upassword" id="Upassword" placeholder="Şifre" required />
                             </div>
                         </div>
                         <div class="mb-3">
@@ -77,7 +77,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-envelope"></i>
                                 </span>
-                                <input type="email" class="form-control" name="Mail" id="Uemail" placeholder="Email" required />
+                                <input type="email" class="form-control" name="Uemail" id="Uemail" placeholder="Email" required />
                             </div>
                         </div>
                         <div class="mb-3">
@@ -85,7 +85,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-building"></i>
                                 </span>
-                                <input type="text" class="form-control" name="BolumBilgisi" id="Udepartman" placeholder="Bölüm" required />
+                                <input type="text" class="form-control" name="Udepartman" id="Udepartman" placeholder="Bölüm" required />
                             </div>
                         </div>
                         <div class="mb-3">
@@ -93,7 +93,7 @@
                                 <span class="input-group-text">
                                     <i class="fas fa-building"></i>
                                 </span>
-                                <input type="text" class="form-control" name="Yetkisi" id="Uauthority" placeholder="Yetki" required />
+                                <input type="text" class="form-control" name="Uauthority" id="Uauthority" placeholder="Yetki" required />
                             </div>
                         </div>
                         <div class="mb-3">
@@ -182,7 +182,7 @@
                                 <td>@adminKullanici.BolumBilgisi</td>
                                 <td>
                                     <form method="post" action="/Admin/DeleteUser" style="display:inline;">
-                                        <input type="hidden" name="email" value="@adminKullanici.Mail" />
+                                        <input type="hidden" name="Mail" value="@adminKullanici.Mail" />
                                         <button type="submit" class="btn btn-danger">Sil</button>
                                     </form>
                                     <button  class="editButton">Düzenle</button>
