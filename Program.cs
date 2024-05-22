@@ -3,7 +3,6 @@ using MuafiyetProjesi2024.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,22 +29,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseRouting();
 
  app.UseAuthorization();
  app.UseAuthentication();
-
-
-app.UseStaticFiles();
-
-// Add the static file middleware for the uploads folder
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-Path.Combine(app.Environment.ContentRootPath, "uploads")),
-    RequestPath = "/uploads"
-});
 
 app.MapControllerRoute(
     name: "default",
