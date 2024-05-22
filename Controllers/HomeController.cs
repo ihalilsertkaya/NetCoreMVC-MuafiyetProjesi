@@ -40,6 +40,18 @@ namespace MuafiyetProjesi2024.Controllers
                 var OturumAcanKullanici= _context.Kullanicilar
                     .SingleOrDefault(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
                 TempData["oturumAcanTc"] = OturumAcanKullanici.Tckimlik;
+                var basvuruVarMi = _context.Basvurular.Any(b => b.Tckimlik == OturumAcanKullanici.Tckimlik);
+                if (basvuruVarMi)
+                {
+                    TempData["BasvuruMevcutMu"] = "1";
+                    Debug.WriteLine("true");
+                }
+                else
+                {
+                    TempData["BasvuruMevcutMu"] = "0";
+                    Debug.WriteLine("false");
+                }
+
                 return RedirectToAction("BasvuruFormu", "Student");
             }
 
