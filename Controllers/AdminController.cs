@@ -122,19 +122,19 @@ namespace MuafiyetProjesi2024.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> DeleteUser(string email)
         {
             var adminKullanici = await _context.AdminKullanicilar.FindAsync(email);
             if (adminKullanici == null)
             {
-                return NotFound();
+                return NoContent(); 
             }
 
             _context.AdminKullanicilar.Remove(adminKullanici);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("AdminPanel");
+            return NoContent(); 
         }
     }
 }
