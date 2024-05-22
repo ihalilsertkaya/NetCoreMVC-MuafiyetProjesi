@@ -2,19 +2,26 @@ document.addEventListener("DOMContentLoaded", function() {
     var kullaniciButton = document.querySelector("#kullaniciButton");
     var basvuruButton = document.querySelector("#basvuruButton");
     var ekleButton = document.querySelector("#ekleButton");
-    var registerForm = document.querySelector("#registerForm");
+    var editButton = document.querySelector(".editButton");
+    var kayitForm = document.querySelector("#kayitForm");
+    var editForm = document.querySelector("#editForm");
     var kullaniciPanel = document.querySelector("#kullaniciPanel");
     var basvuruPanel = document.querySelector("#basvuruPanel");
     var kayitFormPanel = document.querySelector(".kayitFormPanel");
+    var editFormPanel = document.querySelector(".editFormPanel");
     var kullaniciTable = document.querySelector(".kullaniciTable");
     var kullaniciPanelClose = document.querySelector("#kullaniciPanel-close");
     var kayitFormPanelClose = document.querySelector("#kayitFormPanel-close");
+    var editFormPanelClose = document.querySelector("#editFormPanel-close");
     var basvuruPanelClose = document.querySelector("#basvuruPanel-close");
     var filtreSelect = document.getElementById('filtreSelect');
 
     kullaniciButton.addEventListener("click", function() {
         kullaniciPanel.style.display = "block";
         basvuruPanel.style.display = "none";
+        kayitFormPanel.style.display = "none"; 
+        editFormPanel.style.display = "none";
+
     });
 
     basvuruButton.addEventListener("click", function() {
@@ -30,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var inputFields = kayitFormPanel.querySelectorAll("input");
         kullaniciTable.style.display = "none";
         kayitFormPanel.style.display = "block"; 
+        editFormPanel.style.display = "none"; 
         kullaniciPanelClose.style.display = "none";
     
         inputFields.forEach(function(input) {
@@ -37,10 +45,25 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    registerForm.addEventListener("submit", function(event) {
+    editButton.addEventListener("click", function() {
+        kullaniciTable.style.display = "none";
+        kayitFormPanel.style.display = "none"; 
+        editFormPanel.style.display = "block"; 
+        kullaniciPanelClose.style.display = "none";
+    });
+
+
+    kayitForm.addEventListener("submit", function(event) {
         event.preventDefault();
         kullaniciTable.style.display = "block";
         kayitFormPanel.style.display = "none";
+        kullaniciPanelClose.style.display = "block";
+        
+    });
+    editForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        kullaniciTable.style.display = "block";
+        editFormPanel.style.display = "none";
         kullaniciPanelClose.style.display = "block";
         
     });
@@ -48,6 +71,12 @@ document.addEventListener("DOMContentLoaded", function() {
     kayitFormPanelClose.addEventListener("click", function() {
         kullaniciTable.style.display = "block";
         kayitFormPanel.style.display = "none";
+        kullaniciPanelClose.style.display = "block";
+    });
+
+    editFormPanelClose.addEventListener("click", function() {
+        kullaniciTable.style.display = "block";
+        editFormPanel.style.display = "none";
         kullaniciPanelClose.style.display = "block";
     });
 

@@ -178,6 +178,12 @@ body {
   height: auto;
   display: none;
 }
+.EditFormPanel {
+  margin: 0 auto;
+  width: 70%;
+  height: auto;
+  display: none;
+}
 
 .form-container {
   margin: 0 auto;

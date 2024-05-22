@@ -122,6 +122,7 @@ form.addEventListener('submit', function () {
         inputAlanlari.forEach(function (input, i) {
             // Input alanının adını ve değerini ders bilgileri objesine ekle
             ders["dersInput_" + (index + 1) + "_" + (i + 1)] = input.value;
+            
         });
 
         // Ders bilgilerini diziye ekle
@@ -177,8 +178,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var cell = document.createElement("td");
             var input = document.createElement("input");
             input.setAttribute("type", "text");
+            input.setAttribute("readonly", "readonly");
             input.setAttribute("class", "inputDers");
-            input.setAttribute("name", "dersInput_" + row + "_" + col);
+            input.setAttribute("name","dersInput_" + row + "_" + col);
             if (dersBilgileri[row][col]) {
                 input.value = dersBilgileri[row][col];
             }

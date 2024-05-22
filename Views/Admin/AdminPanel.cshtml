@@ -46,6 +46,7 @@
                     <span class="close" id="kullaniciPanel-close">X</span>
                 </div>
             </div>
+            <!-- ! Kullanıcı Kayıt Formu -->
             <div class="kayitFormPanel">
                 <div class="form-container">
                     <div>
@@ -54,7 +55,7 @@
                     <div class="form-header">
                         <img src="/image/logo.png" />
                     </div>
-                    <form id="registerForm" method="post" autocomplete="off" enctype="multipart/form-data">
+                    <form id="kayitForm" method="post" autocomplete="off" enctype="multipart/form-data">
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text">
@@ -101,6 +102,62 @@
                     </form>
                 </div>
             </div>
+            <!-- ! Kullanıcı Düzenleme Formu -->
+            <div class="editFormPanel">
+                <div class="form-container">
+                    <div>
+                        <span class="closeForm" id="editFormPanel-close">X</span>
+                    </div>
+                    <div class="form-header">
+                        <img src="/image/logo.png" />
+                    </div>
+                    <form id="editForm" method="post" autocomplete="off" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-id-card"></i>
+                                </span>
+                                <input type="text" class="form-control" name="UnameSurname" id="UnameSurname" placeholder="Adı-Soyadı" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" name="Upassword" id="Upassword" placeholder="Şifre" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" name="Uemail" id="Uemail" placeholder="Email" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                                <input type="text" class="form-control" name="Udepartman" id="Udepartman" placeholder="Bölüm" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                                <input type="text" class="form-control" name="Uauthority" id="Uauthority" placeholder="Yetki" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary" id="submit">Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <!-- ! Kullanıcılar Tablosu -->
             <div class="kullaniciTable">
                 <div class="Eklebutton">
@@ -128,7 +185,7 @@
                                         <input type="hidden" name="Mail" value="@adminKullanici.Mail" />
                                         <button type="submit" class="btn btn-danger">Sil</button>
                                     </form>
-                                    <button class="btn btn-warning">Düzenle</button>
+                                    <button  class="editButton">Düzenle</button>
                                 </td>
                             </tr>
                         }
