@@ -136,5 +136,26 @@ namespace MuafiyetProjesi2024.Controllers
 
             return RedirectToAction("AdminPanel");
         }
+
+        public async Task<IActionResult> HocaEkleme(AdminKullanici kullanici)
+        {
+            ModelState.Clear();
+            // Veritabanında kullanıcı var mı kontrol ediyoruz
+            var existingUser = await _context.AdminKullanicilar.FirstOrDefaultAsync(x => x.Mail == kullanici.Mail ) ;
+
+            if (existingUser != null)
+            {
+                // Eğer kullanıcı varsa, hata mesajı ekleyip aynı görünümü tekrar gösteriyoruz
+                ModelState.AddModelError(string.Empty, "Böyle bir Kullanıcı zaten kullanılmaktadır.");
+                return View();
+            }
+
+            // Eğer kullanıcı yoksa, yeni kullanıcıyı ekliyoruz
+            _context.AdminKullanicilar.Add(kullanici);
+            await _context.SaveChangesAsync();
+
+            // Başarılı kayıt durumunda yönlendirme
+            return RedirectToAction("Index");
+        }
     }
 }
