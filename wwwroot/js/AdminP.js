@@ -54,14 +54,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     kayitForm.addEventListener("submit", function(event) {
-        event.preventDefault();
+       
         kullaniciTable.style.display = "block";
         kayitFormPanel.style.display = "none";
         kullaniciPanelClose.style.display = "block";
         
     });
     editForm.addEventListener("submit", function(event) {
-        event.preventDefault();
+        
         kullaniciTable.style.display = "block";
         editFormPanel.style.display = "none";
         kullaniciPanelClose.style.display = "block";
