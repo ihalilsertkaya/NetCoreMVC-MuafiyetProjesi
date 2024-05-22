@@ -86,6 +86,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             var formData = await Request.ReadFormAsync();
             var pdfBase64 = formData["pdf"];
+            string ogrTC = formData["ogrTC"].ToString();
 
             if (string.IsNullOrEmpty(pdfBase64))
             {
@@ -96,7 +97,7 @@ namespace MuafiyetProjesi2024.Controllers
             byte[] pdfBytes = Convert.FromBase64String(pdfBase64);
 
             // Dosya adını ve yolunu belirle
-            string fileName = $"MuafiyetBasvuru_{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf";
+            string fileName = $"{ogrTC}-Muafiyet.pdf";
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdfFiles", fileName);
 
             // PDF'yi sunucuda kaydet
