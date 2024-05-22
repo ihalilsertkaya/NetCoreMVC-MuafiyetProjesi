@@ -55,12 +55,14 @@
               /><br />
             </div>
             <div class="flex-label-input">
+
               <label for="tc_no">T.C. Kimlik No:</label>
               <input
                 type="text"
                 id="tc_no"
                 name="Tckimlik"
                 required
+                value="@ViewBag.OturumTC"
               /><br />
             </div>
             <div class="flex-label-input">
@@ -217,10 +219,19 @@
         </div>
         <hr />
         <!-- Submit butonu -->
-        <input type="submit" value="Gönder" />
+            <input type="submit" id="submitBtn" value="Gönder" />
       </form>
       <!-- ! End / -->
     </div>
   </body>
   <script src="/js/form.js"></script>
+    <script>
+        // TempData'deki "BasvuruMevcutMu" değerini kontrol et
+        var basvuruMevcutMu = "@TempData["BasvuruMevcutMu"]";
+
+        if (basvuruMevcutMu === "1") {
+            alert("Daha önce bir başvuru yaptınız. Tekrar başvuru gönderemezsiniz.");
+            document.getElementById("submitBtn").style.display = "none";
+        }
+    </script>
 </html>
