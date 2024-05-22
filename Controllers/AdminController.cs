@@ -124,5 +124,21 @@ namespace MuafiyetProjesi2024.Controllers
 
             return RedirectToAction("AdminPanel");
         }
+        
+        [HttpPost]
+        public IActionResult Register(AdminKullanici model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.AdminKullanicilar.Add(model);
+                _context.SaveChanges();
+                ViewBag.Message = "Kayıt başarılı!";
+                return RedirectToAction("AdminPanel"); // Başarılı mesajını göstermek için aynı view'i tekrar render et
+            }
+
+            ViewBag.Message = "Kayıt başarısız! Lütfen girdiğiniz bilgileri kontrol edin.";
+            return View(model); // Hata mesajıyla birlikte formu tekrar göster
+        }
+
     }
 }

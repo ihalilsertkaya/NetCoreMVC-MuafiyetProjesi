@@ -86,6 +86,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             var formData = await Request.ReadFormAsync();
             var pdfBase64 = formData["pdf"];
+            var ogrTC = TempData["oturumAcanTc"] as String;
 
             if (string.IsNullOrEmpty(pdfBase64))
             {
@@ -96,14 +97,42 @@ namespace MuafiyetProjesi2024.Controllers
             byte[] pdfBytes = Convert.FromBase64String(pdfBase64);
 
             // Dosya adını ve yolunu belirle
-            string fileName = $"MuafiyetBasvuru_{DateTime.Now.ToString("yyyyMMddHHmmss")}.pdf";
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+            string fileName = $"{ogrTC}-Muafiyet.pdf";
+            string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+            if (!Directory.Exists(uploadsPath))
+            {
+                Directory.CreateDirectory(uploadsPath);
+            }
+
+            string filePath = Path.Combine(uploadsPath, fileName);
 
             // PDF'yi sunucuda kaydet
             await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);
 
-            // Dosya yolunu veritabanına kaydet (örnek)
-            // await _yourDbContext.SaveFilePathAsync(fileName, filePath);
+            // Check if ogrTC exists in Kullanicilar
+            var kullanici = await _context.Kullanicilar.FirstOrDefaultAsync(k => k.Tckimlik == ogrTC);
+            if (kullanici == null)
+            {
+                return BadRequest("Geçersiz ogrTC. Kullanıcı bulunamadı.");
+            }
+
+            // Dosya yolunu veritabanına kaydet
+            var evrak = await _context.Evraklar.FirstOrDefaultAsync(e => e.Tckimlik == ogrTC);
+            if (evrak != null)
+            {
+                evrak.BasvuruBelgesi = filePath;
+            }
+            else
+            {
+                evrak = new Evrak
+                {
+                    Tckimlik = ogrTC,
+                    BasvuruBelgesi = filePath
+                };
+                _context.Evraklar.Add(evrak);
+            }
+    
+            await _context.SaveChangesAsync();
 
             return Json(new { filePath = filePath });
         }

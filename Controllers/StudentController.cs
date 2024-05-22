@@ -27,6 +27,8 @@ namespace MuafiyetProjesi2024.Controllers
             {
                 return RedirectToAction("Index","Home");
             }
+            ViewBag.OturumTC = oturumTC;
+
             return View();
         }
         public IActionResult BasvuruFormuPdf()
@@ -44,7 +46,8 @@ namespace MuafiyetProjesi2024.Controllers
                 // Evrak dosyalarını yükle
                 if (Transkript != null && Transkript.Length > 0)
                 {
-                    var transkriptDosyaYolu = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads", $"{basvuruBilgisi.OgrNo}-Transkript.pdf");
+
+                    var transkriptDosyaYolu = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", $"{basvuruBilgisi.Tckimlik}-Transkript.pdf");
                     using (var stream = new FileStream(transkriptDosyaYolu, FileMode.Create))
                     {
                         await Transkript.CopyToAsync(stream);
@@ -54,7 +57,7 @@ namespace MuafiyetProjesi2024.Controllers
 
                 if (DersIcerik != null && DersIcerik.Length > 0)
                 {
-                    var dersDokumDosyaYolu = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads", $"{basvuruBilgisi.OgrNo}-DersDokum.pdf");
+                    var dersDokumDosyaYolu = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", $"{basvuruBilgisi.Tckimlik}-DersDokum.pdf");
                     using (var stream = new FileStream(dersDokumDosyaYolu, FileMode.Create))
                     {
                         await DersIcerik.CopyToAsync(stream);
