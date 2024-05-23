@@ -110,7 +110,6 @@ namespace MuafiyetProjesi2024.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUser(string email)
         {
             var adminKullanici = await _context.AdminKullanicilar.FindAsync(email);
