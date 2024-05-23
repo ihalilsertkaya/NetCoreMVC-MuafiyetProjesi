@@ -214,14 +214,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Yeni sekme aç ve PDF'yi orada göster
             let pdfWindow = window.open("");
-            pdfWindow.document.write(`<html>
+            pdfWindow.document.write(`
+                <html>
                     <head>
                         <title>Muafiyet Başvuru Belgesi</title>
+                        <style>
+                            body, html {
+                                margin: 0;
+                                padding: 0;
+                                height: 100%;
+                                overflow: hidden;
+                            }
+                            iframe {
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                            }
+                        </style>
                     </head>
                     <body>
-                        <iframe width='100%' height='100%' src='${pdfDataUri}'></iframe>
+                        <iframe src="${pdfDataUri}" frameborder="0"></iframe>
                     </body>
-                    </html>`);
+                </html>
+            `);
+            pdfWindow.document.close();
 
             // PDF'yi base64 formatında al
             let base64PDF = pdfDataUri.split(',')[1];
