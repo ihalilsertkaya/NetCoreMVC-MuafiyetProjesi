@@ -254,12 +254,17 @@ body {
   margin-bottom: 1rem;
 }
 .editButton{
-  background-color:deepskyblue;
+  background-color:#3366a0;
   border:none;
   color: white;
+  border-radius: 6px;
+  height: 30px;
 }
 .editButton:hover{
-  background-color:lightblue;
+  background-color:deepskyblue;
+}
+.deleteButton{
+  height: 30px;
 }
 
 /* Responsive Design */
