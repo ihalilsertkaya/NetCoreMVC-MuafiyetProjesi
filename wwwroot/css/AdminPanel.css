@@ -264,9 +264,9 @@ body {
   background-color:deepskyblue;
 }
 .deleteButton{
-  background-color: red;
-  color: white;
-  height: 30px;
+  background-color:red;
+  color:white;
+  height: 30px
 }
 
 /* Responsive Design */
