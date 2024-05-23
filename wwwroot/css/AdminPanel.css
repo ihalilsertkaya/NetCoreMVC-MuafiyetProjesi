@@ -263,11 +263,6 @@ body {
 .editButton:hover{
   background-color:deepskyblue;
 }
-.delete{
-  background-color: red;
-  height: 30px;
-  color: white;
-}
 
 /* Responsive Design */
 @media (max-width: 1200px) {
