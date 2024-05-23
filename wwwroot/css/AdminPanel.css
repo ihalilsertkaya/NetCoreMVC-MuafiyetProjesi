@@ -253,16 +253,15 @@ body {
   border-radius: 6px;
   margin-bottom: 1rem;
 }
-.editButton{
-  background-color: #3366a0;
+.btn-primary{
+  background-color:deepskyblue;
+  border:none;
   color: white;
-  border-radius: 6px;
 }
-.editButton:hover{
-  background-color:lightskyblue;
-  color: white;
-  border-radius: 6px;
+.btn-primary:hover{
+  background-color:lightblue;
 }
+
 
 /* Responsive Design */
 @media (max-width: 1200px) {
