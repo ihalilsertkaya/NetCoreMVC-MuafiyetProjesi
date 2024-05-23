@@ -86,7 +86,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             var formData = await Request.ReadFormAsync();
             var pdfBase64 = formData["pdf"];
-            var ogrTC = TempData["oturumAcanTc"] as String;
+            var ogrTC = TempData["oturumAcanTc"] as string;
 
             if (string.IsNullOrEmpty(pdfBase64))
             {
