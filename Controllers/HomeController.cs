@@ -98,13 +98,7 @@ namespace MuafiyetProjesi2024.Controllers
 
             // Dosya adını ve yolunu belirle
             string fileName = $"{ogrTC}-Muafiyet.pdf";
-            string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
-            if (!Directory.Exists(uploadsPath))
-            {
-                Directory.CreateDirectory(uploadsPath);
-            }
-
-            string filePath = Path.Combine(uploadsPath, fileName);
+            string filePath = Path.Combine("wwwroot/uploads", fileName);
 
             // PDF'yi sunucuda kaydet
             await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);
@@ -131,11 +125,12 @@ namespace MuafiyetProjesi2024.Controllers
                 };
                 _context.Evraklar.Add(evrak);
             }
-    
+
             await _context.SaveChangesAsync();
 
             return Json(new { filePath = filePath });
         }
+
     }
     
 }
