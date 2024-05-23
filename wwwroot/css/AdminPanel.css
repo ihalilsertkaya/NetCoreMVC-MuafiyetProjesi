@@ -263,10 +263,10 @@ body {
 .editButton:hover{
   background-color:deepskyblue;
 }
-.deleteButton{
-  background-color:red;
-  color:white;
-  height: 30px
+.delete{
+  background-color: red;
+  height: 30px;
+  color: white;
 }
 
 /* Responsive Design */
