@@ -40,6 +40,7 @@ namespace MuafiyetProjesi2024.Controllers
                 var OturumAcanKullanici= _context.Kullanicilar
                     .SingleOrDefault(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
                 TempData["oturumAcanTc"] = OturumAcanKullanici.Tckimlik;
+                TempData["tc"] = OturumAcanKullanici.Tckimlik;
                 return RedirectToAction("BasvuruFormu", "Student");
             }
 
@@ -86,7 +87,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             var formData = await Request.ReadFormAsync();
             var pdfBase64 = formData["pdf"];
-            var ogrTC = TempData["oturumAcanTc"] as string;
+            var ogrTC = TempData["tc"] as string;
 
             if (string.IsNullOrEmpty(pdfBase64))
             {
