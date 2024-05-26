@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         basvuruPanel.style.display = "none";
           
     });
+    
     var basvuruTable = document.querySelector('#basvuruTable');
 
     basvuruTable.addEventListener('click', function (event) {
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             tr.style.color = 'white';
         }
     }
+
 
 });
 
