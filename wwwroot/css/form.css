@@ -108,12 +108,6 @@ select {
   border-radius: 5px;
 }
 /* ************************************************* */
-/* !İmza */
-/* #signaturePreview{
-    width: 4vw;
-    object-fit: cover;
-} */
-/* ************************************************* */
 /* Submit button style */
 input[type="submit"] {
   width: calc(100% - 20px);

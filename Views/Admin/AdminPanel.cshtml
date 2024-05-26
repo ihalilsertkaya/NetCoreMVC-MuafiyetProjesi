@@ -9,12 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/css/AdminPanel.css">
     <style>
-        .delete{
+       .delete{
         background-color: red;
         height: 30px;
         color: white;
         border:none;
         border-radius:6px;
+        }
+        .delete:hover{
+         color:red;
+         background-color:white;
+        }
+        .a:hover{
+         color:white;
         }
 
         .closeForm {
@@ -188,9 +195,9 @@
                                 <td>
                                     <form method="post" action="/Admin/DeleteUser" style="display:inline;">
                                         <input type="hidden" name="email" value="@adminKullanici.Mail" />
-                                        <button type="submit" class="delete">Sil</button>
+                                         <button type="submit" class=" fas fa-trash-alt delete"></button>
                                     </form>
-                                    <button id="editButton-@adminKullanici.Mail" class="editButton">Düzenle</button>
+                                    <button  class=" fas fa-pencil-alt  editButton"></button>
                                 </td>
                             </tr>
                         }
@@ -237,9 +244,9 @@
                             <td>@basvuru.AdSoyad</td>
                             <td>@basvuru.Mail</td>
                             <td>@basvuru.GeldigiBolum</td>
-                            <td><a href="/uploads/@($"{basvuru.Tckimlik}-Basvuru.pdf")" target="_blank">PDF</a></td>
-                            <td><a href="/uploads/@($"{basvuru.Tckimlik}-Transkript.pdf")" target="_blank">PDF</a></td>
-                            <td><a href="/uploads/@($"{basvuru.Tckimlik}-DersDokum.pdf")" target="_blank">PDF</a></td>
+                            <td><a style="color:red;font-size:20px;" class="fas fa-file-pdf a" href="/uploads/@($"{basvuru.Tckimlik}-Basvuru.pdf")" target="_blank"></a></td>
+                            <td><a style="color:red;font-size:20px;" class="fas fa-file-pdf" href="/uploads/@($"{basvuru.Tckimlik}-Transkript.pdf")" target="_blank"></a></td>
+                            <td><a style="color:red;font-size:20px;" class="fas fa-file-pdf" href="/uploads/@($"{basvuru.Tckimlik}-DersDokum.pdf")" target="_blank"></a></td>
                         </tr>
                     }
                 </tbody>

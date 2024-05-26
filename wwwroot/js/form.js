@@ -60,14 +60,25 @@ document.getElementById("ekleButton").addEventListener("click", function (event)
 
     // Silme butonu için ek sütun oluştur
     var deleteCell = document.createElement("td");
+    deleteCell.style.border="none";
     var deleteButton = document.createElement("button");
-    deleteButton.textContent = "x";
-    deleteButton.className = "silButton";
-    deleteButton.style.background = "red"; // Kırmızı arka plan rengi
+    deleteButton.className = "fas fa-trash";
+    deleteButton.style.backgroundColor="red";
+    deleteButton.style.border="none";
+    deleteButton.style.borderRadius="3px";
+    deleteButton.style.color="white";
     deleteButton.style.textAlign = "center"; // Metin hizalaması
     deleteButton.addEventListener("click", function () {
         // Silme butonuna tıklandığında ilgili satırı kaldır
         derslerBody.removeChild(newRow);
+    });
+    
+    deleteButton.addEventListener("mouseover", function () {
+        deleteButton.className = "fas fa-trash-alt"; 
+    });
+    
+    deleteButton.addEventListener("mouseout", function () {
+        deleteButton.className = "fas fa-trash"; 
     });
     deleteCell.appendChild(deleteButton);
     newRow.appendChild(deleteCell);
@@ -138,7 +149,7 @@ form.addEventListener('submit', function () {
 
     // İkinci sayfaya geçiş yap
     window.open("BasvuruFormuPdf?" + urlParams.toString(), "_blank");
-    //alert("BasvuruFormuPdf?" + urlParams.toString());
+
     form.submit();
 });
 

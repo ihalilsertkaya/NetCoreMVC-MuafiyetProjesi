@@ -149,7 +149,12 @@
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    
+    var simdikiTarih = new Date();
+    var gun = simdikiTarih.getDate();
+    var ay = simdikiTarih.getMonth() + 1;
+    var yil = simdikiTarih.getFullYear();
+    var tarih = (gun < 10 ? "0" + gun : gun) + "/" + (ay < 10 ? "0" + ay : ay) + "/" + yil;
+    document.getElementById('date').textContent = tarih;
     var urlParams = new URLSearchParams(window.location.search);
 
     // Her bir form verisini uygun alanlara yerleştir
