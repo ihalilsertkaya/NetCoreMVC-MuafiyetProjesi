@@ -104,4 +104,34 @@ document.addEventListener("DOMContentLoaded", function () {
             row.style.display = (filterValue === "" || department.includes(filterValue)) ? "" : "none";
         });
     });
+    var basvuruTable = document.querySelector('#basvuruTable');
+
+    basvuruTable.addEventListener('click', function (event) {
+        // Sadece PDF bağlantılarına tıklamaları dinlemek için
+        if (event.target.matches('.fa-file-pdf')) {
+            var tr = event.target.closest('tr');
+            
+            // Tıklanan öğeye göre ilgili veri niteliğini ayarla
+            if (event.target.id === 'Basvuru') {
+                tr.dataset.basvuruAcildi = "true";
+                event.target.style.color = 'white'; 
+            } else if (event.target.id === 'Transkript') {
+                event.target.style.color = 'white'; 
+                tr.dataset.transkriptAcildi = "true";
+            } else if (event.target.id === 'DersDokum') {
+                event.target.style.color = 'white'; 
+                tr.dataset.dersDokumAcildi = "true";
+            }
+
+            // Tüm bağlantıların tıklanıp tıklanmadığını kontrol et
+            checkAllOpened(tr);
+        }
+    });
+
+    function checkAllOpened(tr) {
+        if (tr.dataset.basvuruAcildi === "true" && tr.dataset.transkriptAcildi === "true" && tr.dataset.dersDokumAcildi === "true") {
+            tr.style.backgroundColor = '#24D330';
+            tr.style.color = 'white';
+        }
+    }
 });

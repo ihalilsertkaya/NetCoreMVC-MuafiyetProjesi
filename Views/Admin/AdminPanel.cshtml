@@ -250,13 +250,13 @@
                     <!-- Veriler dinamik olarak buraya eklenecek -->
                     @foreach (var basvuru in Model.Basvurular)
                     {
-                        <tr>
+                       <tr>
                             <td>@basvuru.AdSoyad</td>
                             <td>@basvuru.Mail</td>
                             <td>@basvuru.GeldigiBolum</td>
-                            <td><a style="color:red;font-size:20px;" class="fas fa-file-pdf a" href="/uploads/@($"{basvuru.Tckimlik}-Basvuru.pdf")" target="_blank"></a></td>
-                            <td><a style="color:red;font-size:20px;" class="fas fa-file-pdf" href="/uploads/@($"{basvuru.Tckimlik}-Transkript.pdf")" target="_blank"></a></td>
-                            <td><a style="color:red;font-size:20px;" class="fas fa-file-pdf" href="/uploads/@($"{basvuru.Tckimlik}-DersDokum.pdf")" target="_blank"></a></td>
+                            <td><a id="Basvuru" style="color:red;font-size:20px;" class="fas fa-file-pdf a" href="/uploads/@($"{basvuru.Tckimlik}-Basvuru.pdf")" target="_blank"></a></td>
+                            <td><a id="Transkript" style="color:red;font-size:20px;" class="fas fa-file-pdf" href="/uploads/@($"{basvuru.Tckimlik}-Transkript.pdf")" target="_blank"></a></td>
+                            <td><a id="DersDokum" style="color:red;font-size:20px;" class="fas fa-file-pdf" href="/uploads/@($"{basvuru.Tckimlik}-DersDokum.pdf")" target="_blank"></a></td>
                         </tr>
                     }
                 </tbody>
