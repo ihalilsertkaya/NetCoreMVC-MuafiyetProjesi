@@ -80,10 +80,11 @@
                 name="OgrNo"
               /><br />
             </div>
-            <div class="flex-label-input">
+             <div class="flex-label-input">
               <label for="telefon">Telefon:</label>
-              <input type="tel" id="telefon" name="Tel" required /><br />
-            </div>
+              <input type="tel" id="telefon" name="Tel" required placeholder="+90 5XX XXX XX XX" pattern="\+90\s5\d{2}\s\d{3}\s\d{2}\s\d{2}"/>
+              <span class="error-message" id="error-message">Lütfen geçerli bir telefon numarası girin. Örneğin: +90 5XX XXX XX XX</span>
+           </div>
             <div class="flex-label-input">
               <label for="eposta">Eposta:</label>
               <input type="email" id="eposta" name="Mail" required /><br />
@@ -149,11 +150,11 @@
             <tbody id="derslerBody">
               <tr>
                 <td><input type="text" name="OncekiDersAdi" class="inputDers" /></td>
-                <td><input type="number" name="OncekiDersKredisi" class="inputDers" /></td>
-                <td><input type="number" name="OncekiDersAkts" class="inputDers" /></td>
+                <td><input type="number" name="OncekiDersKredisi" class="inputDers" min="0"/></td>
+                <td><input type="number" name="OncekiDersAkts" class="inputDers" min="0"/></td>
                 <td><input type="text" name="MuafDersAdi" class="inputDers" /></td>
-                <td><input type="number" name="MuafDersKredisi" class="inputDers" /></td>
-                <td><input type="number" name="MuafDersAkts" class="inputDers" /></td>
+                <td><input type="number" name="MuafDersKredisi" class="inputDers" min="0"/></td>
+                <td><input type="number" name="MuafDersAkts" class="inputDers" min="0"/></td>
                 <td><input type="text" name="MuafDersKodu" class="inputDers" /></td>
               </tr>
             </tbody>
