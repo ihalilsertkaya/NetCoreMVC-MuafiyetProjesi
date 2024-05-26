@@ -6,9 +6,30 @@
     <title>Muafiyet Başvuru Sayfası</title>
     <link rel="stylesheet" href="/css/form.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7-beta.19/inputmask.min.js"></script>
+    <style>
+        .logout{
+          display:flex;
+          align-items:center;
+          justify-content:flex-end;
+        }
+        .logout-icon{
+          text-decoration:none; 
+          font-size:25px;
+          margin-right:3px;
+          color:white;
+          margin-right:2rem;
+          margin-top:1rem;
+          }
+          .logout-icon:hover{
+          color:red;
+          }
+      </style>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7-beta.19/inputmask.min.js"></script>
   </head>
   <body>
+    <div class="logout">
+      <a href="BasvuruFormu" class="fas fa-sign-out-alt logout-icon"></a>
+    </div>
     <div class="container">
       <!--! Header -->
       <div class="header">

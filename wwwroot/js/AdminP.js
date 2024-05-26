@@ -17,12 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
     var filtreSelect = document.getElementById('filtreSelect');
 
     kullaniciButton.addEventListener("click", function () {
-        kullaniciPanel.style.display = "block";
-        basvuruPanel.style.display = "none";
-        kayitFormPanel.style.display = "none";
-        editFormPanel.style.display = "none";
+        // Önce kayitFormPanel'in görünür olup olmadığını kontrol edin
+        if (kayitFormPanel.style.display === "block" || editFormPanel.style.display === "block") {
+            alert("Lütfen formu doldurun veya kapatın.");
+        } else {
+            // Sonra diğer panelleri görünür/gizli hale getirin
+            kullaniciPanel.style.display = "block";
+            basvuruPanel.style.display = "none";
+            kayitFormPanel.style.display = "none";
+            editFormPanel.style.display = "none";
+        }
     });
-
+    
     basvuruButton.addEventListener("click", function () {
         basvuruPanel.style.display = "block";
         kullaniciPanel.style.display = "none";
