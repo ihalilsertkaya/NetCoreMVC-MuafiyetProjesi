@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var filtreSelect = document.getElementById('filtreSelect');
 
     kullaniciButton.addEventListener("click", function () {
-        // Önce kayitFormPanel'in görünür olup olmadığını kontrol edin
+        
         if (kayitFormPanel.style.display === "block" || editFormPanel.style.display === "block") {
             alert("Lütfen formu doldurun veya kapatın.");
         } else {
@@ -30,8 +30,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     basvuruButton.addEventListener("click", function () {
-        basvuruPanel.style.display = "block";
-        kullaniciPanel.style.display = "none";
+        if (kayitFormPanel.style.display === "block" || editFormPanel.style.display === "block") {
+            alert("Lütfen formu doldurun veya kapatın.");
+        } else {
+            // Sonra diğer panelleri görünür/gizli hale getirin
+            kullaniciPanel.style.display = "none";
+            basvuruPanel.style.display = "block";
+            kayitFormPanel.style.display = "none";
+            editFormPanel.style.display = "none";
+        }
     });
 
     kullaniciPanelClose.addEventListener("click", function () {
