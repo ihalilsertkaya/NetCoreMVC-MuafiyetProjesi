@@ -123,6 +123,7 @@ namespace MuafiyetProjesi2024.Controllers
 
             return RedirectToAction("AdminPanel");
         }
+
         
         [HttpPost]
         public IActionResult Register(AdminKullanici model)
@@ -138,6 +139,34 @@ namespace MuafiyetProjesi2024.Controllers
             ViewBag.Message = "Kayıt başarısız! Lütfen girdiğiniz bilgileri kontrol edin.";
             return View(model); // Hata mesajıyla birlikte formu tekrar göster
         }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateUser(AdminKullanici model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _context.AdminKullanicilar.FindAsync(model.Mail);
+                if (user != null)
+                {
+                    user.AdSoyad = model.AdSoyad;
+                    if(model.Sifre!=null) {
+                    user.Sifre = model.Sifre;
+                    
+                    }
+                    
+                    user.BolumBilgisi = model.BolumBilgisi;
+                    
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("AdminPanel");
+                }
+                return NotFound();
+            }
+            return View("Error");
+        }
+
 
     }
 }

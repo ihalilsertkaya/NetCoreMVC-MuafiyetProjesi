@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var kullaniciButton = document.querySelector("#kullaniciButton");
     var basvuruButton = document.querySelector("#basvuruButton");
     var ekleButton = document.querySelector("#ekleButton");
-    var editButton = document.querySelector(".editButton");
+    var editButtons = document.querySelectorAll(".editButton");
     var kayitForm = document.querySelector("#kayitForm");
     var editForm = document.querySelector("#editForm");
     var kullaniciPanel = document.querySelector("#kullaniciPanel");
@@ -16,78 +16,84 @@ document.addEventListener("DOMContentLoaded", function() {
     var basvuruPanelClose = document.querySelector("#basvuruPanel-close");
     var filtreSelect = document.getElementById('filtreSelect');
 
-    kullaniciButton.addEventListener("click", function() {
+    kullaniciButton.addEventListener("click", function () {
         kullaniciPanel.style.display = "block";
         basvuruPanel.style.display = "none";
-        kayitFormPanel.style.display = "none"; 
+        kayitFormPanel.style.display = "none";
         editFormPanel.style.display = "none";
-
     });
 
-    basvuruButton.addEventListener("click", function() {
+    basvuruButton.addEventListener("click", function () {
         basvuruPanel.style.display = "block";
         kullaniciPanel.style.display = "none";
     });
 
-    kullaniciPanelClose.addEventListener("click", function() {
+    kullaniciPanelClose.addEventListener("click", function () {
         kullaniciPanel.style.display = "none";
     });
 
-    ekleButton.addEventListener("click", function() {
+    ekleButton.addEventListener("click", function () {
         var inputFields = kayitFormPanel.querySelectorAll("input");
         kullaniciTable.style.display = "none";
-        kayitFormPanel.style.display = "block"; 
-        editFormPanel.style.display = "none"; 
+        kayitFormPanel.style.display = "block";
+        editFormPanel.style.display = "none";
         kullaniciPanelClose.style.display = "none";
-    
-        inputFields.forEach(function(input) {
+
+        inputFields.forEach(function (input) {
             input.value = "";
         });
     });
 
-    editButton.addEventListener("click", function() {
-        kullaniciTable.style.display = "none";
-        kayitFormPanel.style.display = "none"; 
-        editFormPanel.style.display = "block"; 
-        kullaniciPanelClose.style.display = "none";
+    editButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            var row = button.closest("tr");
+            var adSoyad = row.cells[0].textContent;
+            var mail = row.cells[1].textContent;
+            var bolumBilgisi = row.cells[2].textContent;
+
+            editForm.querySelector("input[name='AdSoyad']").value = adSoyad;
+            editForm.querySelector("input[name='Mail']").value = mail;
+            editForm.querySelector("input[name='BolumBilgisi']").value = bolumBilgisi;
+
+            kullaniciTable.style.display = "none";
+            kayitFormPanel.style.display = "none";
+            editFormPanel.style.display = "block";
+            kullaniciPanelClose.style.display = "none";
+        });
     });
 
-
-    kayitForm.addEventListener("submit", function(event) {
-       
-        kullaniciTable.style.display = "block";
-        kayitFormPanel.style.display = "none";
-        kullaniciPanelClose.style.display = "block";
-        
-    });
-    editForm.addEventListener("submit", function(event) {
-        
-        kullaniciTable.style.display = "block";
-        editFormPanel.style.display = "none";
-        kullaniciPanelClose.style.display = "block";
-        
-    });
-
-    kayitFormPanelClose.addEventListener("click", function() {
+    kayitForm.addEventListener("submit", function (event) {
         kullaniciTable.style.display = "block";
         kayitFormPanel.style.display = "none";
         kullaniciPanelClose.style.display = "block";
     });
 
-    editFormPanelClose.addEventListener("click", function() {
+    editForm.addEventListener("submit", function (event) {
         kullaniciTable.style.display = "block";
         editFormPanel.style.display = "none";
         kullaniciPanelClose.style.display = "block";
     });
 
-    basvuruPanelClose.addEventListener("click", function() {
+    kayitFormPanelClose.addEventListener("click", function () {
+        kullaniciTable.style.display = "block";
+        kayitFormPanel.style.display = "none";
+        kullaniciPanelClose.style.display = "block";
+    });
+
+    editFormPanelClose.addEventListener("click", function () {
+        kullaniciTable.style.display = "block";
+        editFormPanel.style.display = "none";
+        kullaniciPanelClose.style.display = "block";
+    });
+
+    basvuruPanelClose.addEventListener("click", function () {
         basvuruPanel.style.display = "none";
     });
 
-    filtreSelect.addEventListener('change', function() {
+    filtreSelect.addEventListener('change', function () {
         var filterValue = this.value.toLowerCase();
         var rows = document.querySelectorAll('#basvuruTable tbody tr');
-        rows.forEach(function(row) {
+        rows.forEach(function (row) {
             var department = row.cells[2].textContent.toLowerCase();
             row.style.display = (filterValue === "" || department.includes(filterValue)) ? "" : "none";
         });
