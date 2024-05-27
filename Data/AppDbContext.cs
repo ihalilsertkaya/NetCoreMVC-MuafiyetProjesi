@@ -33,6 +33,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<AdminKullanici>(entity =>
         {
 
+            entity.HasKey(e => e.AdminKullaniciId);
+
             entity.ToTable("AdminKullanicilar");
 
             entity.Property(e => e.AdSoyad).HasMaxLength(50);

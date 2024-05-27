@@ -14,7 +14,11 @@ public partial class AdminKullanici
 
     public string? Yetkisi { get; set; }
 
-    [Key]
+    
     public string? Mail { get; set; }
+    
+    [Key]
+    public int AdminKullaniciId { get; set; }
+
 
 }

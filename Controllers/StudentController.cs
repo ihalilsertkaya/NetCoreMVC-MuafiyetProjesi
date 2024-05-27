@@ -19,7 +19,7 @@ namespace MuafiyetProjesi2024.Controllers
         
         public IActionResult BasvuruFormu()
         {
-            var oturumTC = TempData["oturumAcanTc"] as String;
+            var oturumTC = TempData.Peek("oturumAcanTc") as string;
             if (oturumTC == null)
             {
                 return RedirectToAction("Index","Home");
@@ -39,6 +39,12 @@ namespace MuafiyetProjesi2024.Controllers
         }
         public IActionResult BasvuruFormuPdf()
         {
+            var oturumTC = TempData.Peek("oturumAcanTc") as string;
+            if (oturumTC == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
         
@@ -67,7 +73,7 @@ namespace MuafiyetProjesi2024.Controllers
                     evrakBilgisi.DersIcerik = dersDokumDosyaYolu;
                 }
 
-                var oturumuAcanTc = TempData["oturumAcanTc"] as String;
+                var oturumuAcanTc = TempData.Peek("oturumAcanTc") as String;
                 var oturumuAcankullanici = _context.Kullanicilar.SingleOrDefault(x => x.Tckimlik == oturumuAcanTc);
                 
                 basvuruBilgisi.Kullanici = oturumuAcankullanici;
