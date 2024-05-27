@@ -10,14 +10,11 @@ namespace MuafiyetProjesi2024.Controllers
     {
         private readonly AppDbContext _context;
         private IWebHostEnvironment _hostingEnvironment;
-        
-
 
         public StudentController(AppDbContext context, IWebHostEnvironment env)
         {
             _hostingEnvironment = env;
             _context = context;
-            
         }   
         
         public IActionResult BasvuruFormu()
@@ -28,6 +25,15 @@ namespace MuafiyetProjesi2024.Controllers
                 return RedirectToAction("Index","Home");
             }
             ViewBag.OturumTC = oturumTC;
+            var user = _context.Kullanicilar.FirstOrDefault(u => u.Tckimlik == oturumTC);
+            if (user != null)
+            {
+                ViewBag.Mail = user.Mail;
+            }
+            else
+            {
+                ViewBag.Mail = "Email bulunamadı"; // Eğer kullanıcı bulunamazsa
+            }
 
             return View();
         }
@@ -39,14 +45,10 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitApplication(Basvuru basvuruBilgisi, Evrak evrakBilgisi, Ders dersBilgisi, IFormFile Transkript, IFormFile DersIcerik)
         {
-
             if (ModelState.IsValid)
             {
-                
-                // Evrak dosyalarını yükle
                 if (Transkript != null && Transkript.Length > 0)
                 {
-
                     var transkriptDosyaYolu = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", $"{basvuruBilgisi.Tckimlik}-Transkript.pdf");
                     using (var stream = new FileStream(transkriptDosyaYolu, FileMode.Create))
                     {
@@ -71,8 +73,6 @@ namespace MuafiyetProjesi2024.Controllers
                 basvuruBilgisi.Kullanici = oturumuAcankullanici;
                 _context.Basvurular.Add(basvuruBilgisi);
                 
-                
-                // Diğer iki modeli de kaydedin
                 evrakBilgisi.Kullanici = oturumuAcankullanici;
                 evrakBilgisi.Tckimlik = basvuruBilgisi.Tckimlik;
                 _context.Evraklar.Add(evrakBilgisi);
@@ -81,17 +81,13 @@ namespace MuafiyetProjesi2024.Controllers
                 dersBilgisi.Tckimlik = basvuruBilgisi.Tckimlik;
                 _context.Dersler.Add(dersBilgisi);
                 
-                    // Değişiklikleri kaydetmeye çalışın
-                    await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 
                 return RedirectToAction("Index", "Home"); // Başka bir sayfaya yönlendir
             }
-
-            // Model geçerli değilse formu tekrar göster
+            
             return RedirectToAction("Register", "Home"); 
         }
-
-
-   
+        
     }
 }
