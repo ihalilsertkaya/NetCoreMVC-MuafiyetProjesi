@@ -37,23 +37,6 @@ namespace MuafiyetProjesi2024.Controllers
 
             return View();
         }
-
-
-        public IActionResult BasvuruBelgeleri()
-        {
-            var oturumTC = TempData["oturumAcanTc"] as String;
-            if (oturumTC == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            // Oturum TC bilgisini kullanarak gerekli işlemleri yapabilirsiniz
-            ViewBag.oturumTC = oturumTC;
-
-            return View();
-        }
-
-
         public IActionResult BasvuruFormuPdf()
         {
             return View();

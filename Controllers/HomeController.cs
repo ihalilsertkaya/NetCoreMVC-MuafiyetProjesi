@@ -27,7 +27,7 @@ namespace MuafiyetProjesi2024.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        
         public async Task<IActionResult> Index(Kullanici kullanici)
         {
 
@@ -40,22 +40,7 @@ namespace MuafiyetProjesi2024.Controllers
                 var OturumAcanKullanici= _context.Kullanicilar
                     .SingleOrDefault(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
                 TempData["oturumAcanTc"] = OturumAcanKullanici.Tckimlik;
-                var basvuruVarMi = _context.Basvurular.Any(b => b.Tckimlik == OturumAcanKullanici.Tckimlik);
-                if (basvuruVarMi)
-                {
-                    
-                    return RedirectToAction("BasvuruBelgeleri", "Student");
-
-                }
-                else
-                {
-                    
-                    return RedirectToAction("BasvuruFormu", "Student");
-                }
-
-
-
-                
+                return RedirectToAction("BasvuruFormu", "Student");
             }
 
             ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");

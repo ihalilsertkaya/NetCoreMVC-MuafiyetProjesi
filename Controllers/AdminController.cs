@@ -42,7 +42,6 @@ namespace MuafiyetProjesi2024.Controllers
 
             string bolumBilgisi = admin.BolumBilgisi;
             TempData["userBolumBilgisi"] = bolumBilgisi;
-            TempData["LoggedInUserMail"] = admin.Mail;
             switch (admin.Yetkisi)
             {
                 case "1":
@@ -81,8 +80,6 @@ namespace MuafiyetProjesi2024.Controllers
         {
             var basvurular = await _context.Basvurular.ToListAsync();
             var adminKullanicilar = await _context.AdminKullanicilar.ToListAsync();
-
-            ViewBag.LoggedInUserMail = TempData["LoggedInUserMail"];
 
             var viewModel = new AdminViewModel
             {
