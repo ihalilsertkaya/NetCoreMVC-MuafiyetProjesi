@@ -41,7 +41,19 @@ namespace MuafiyetProjesi2024.Controllers
                 var OturumAcanKullanici= _context.Kullanicilar
                     .SingleOrDefault(x => x.Mail == kullanici.Mail && x.Parola == kullanici.Parola);
                 TempData["oturumAcanTc"] = OturumAcanKullanici.Tckimlik;
-                return RedirectToAction("BasvuruFormu", "Student");
+                var basvuruVarMi = _context.Basvurular.Any(b => b.Tckimlik == OturumAcanKullanici.Tckimlik);
+                if (basvuruVarMi)
+                {
+
+                    return RedirectToAction("BasvuruBelgeleri", "Student");
+
+                }
+                else
+                {
+
+                    return RedirectToAction("BasvuruFormu", "Student");
+                }
+
             }
 
             ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");

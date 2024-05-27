@@ -49,8 +49,8 @@ namespace MuafiyetProjesi2024.Controllers
                 ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya parola.");
                 return View();
             }
-
             string bolumBilgisi = admin.BolumBilgisi;
+            TempData["LoggedInUserMail"] = admin.Mail;
             TempData["userBolumBilgisi"] = bolumBilgisi;
             TempData["adminYetkisi"] = admin.Yetkisi;
             switch (admin.Yetkisi)
@@ -102,6 +102,8 @@ namespace MuafiyetProjesi2024.Controllers
 
             var basvurular = await _context.Basvurular.ToListAsync();
             var adminKullanicilar = await _context.AdminKullanicilar.ToListAsync();
+
+            ViewBag.LoggedInUserMail = TempData["LoggedInUserMail"];
 
             var viewModel = new AdminViewModel
             {
