@@ -47,7 +47,16 @@ namespace MuafiyetProjesi2024.Controllers
             
             return View();
         }
-        
+
+        public ActionResult LogoutAndRedirect()
+        {
+            // TempData'yı temizle
+            TempData.Clear();
+
+            // İstediğiniz sayfaya yönlendirin (örneğin, BasvuruFormu sayfası)
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -86,7 +95,7 @@ namespace MuafiyetProjesi2024.Controllers
         {
             var formData = await Request.ReadFormAsync();
             var pdfBase64 = formData["pdf"];
-            var ogrTC = TempData["oturumAcanTc"] as string;
+            var ogrTC = TempData.Peek("oturumAcanTc") as string;
 
             if (string.IsNullOrEmpty(pdfBase64))
             {

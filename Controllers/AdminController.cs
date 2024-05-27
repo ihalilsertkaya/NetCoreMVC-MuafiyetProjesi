@@ -25,6 +25,15 @@ namespace MuafiyetProjesi2024.Controllers
             return View();
         }
 
+        public ActionResult AdminLogoutAndRedirect()
+        {
+            // TempData'yı temizle
+            TempData.Clear();
+
+            // İstediğiniz sayfaya yönlendirin (örneğin, BasvuruFormu sayfası)
+            return RedirectToAction("AdminLogin");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdminLogin(String Mail, String Sifre)
@@ -42,6 +51,7 @@ namespace MuafiyetProjesi2024.Controllers
 
             string bolumBilgisi = admin.BolumBilgisi;
             TempData["userBolumBilgisi"] = bolumBilgisi;
+            TempData["adminYetkisi"] = admin.Yetkisi;
             switch (admin.Yetkisi)
             {
                 case "1":
@@ -59,6 +69,11 @@ namespace MuafiyetProjesi2024.Controllers
         public async Task<IActionResult> UsersPanel()
         {
             var bolumBilgisi = TempData["userBolumBilgisi"] as string;
+            var adminYetkisi = TempData["adminYetkisi"] as string;
+            if (adminYetkisi != "1")
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
 
             if (string.IsNullOrEmpty(bolumBilgisi))
             {
@@ -78,6 +93,12 @@ namespace MuafiyetProjesi2024.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminPanel()
         {
+            var adminYetkisi = TempData["adminYetkisi"] as string;
+            if (adminYetkisi != "0")
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
+
             var basvurular = await _context.Basvurular.ToListAsync();
             var adminKullanicilar = await _context.AdminKullanicilar.ToListAsync();
 

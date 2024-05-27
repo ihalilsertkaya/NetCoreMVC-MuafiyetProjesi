@@ -19,7 +19,7 @@ namespace MuafiyetProjesi2024.Controllers
         
         public IActionResult BasvuruFormu()
         {
-            var oturumTC = TempData["oturumAcanTc"] as String;
+            var oturumTC = TempData.Peek("oturumAcanTc") as string;
             if (oturumTC == null)
             {
                 return RedirectToAction("Index","Home");
@@ -39,6 +39,12 @@ namespace MuafiyetProjesi2024.Controllers
         }
         public IActionResult BasvuruFormuPdf()
         {
+            var oturumTC = TempData.Peek("oturumAcanTc") as string;
+            if (oturumTC == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
         
