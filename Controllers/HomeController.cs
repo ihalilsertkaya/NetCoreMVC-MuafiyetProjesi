@@ -137,7 +137,7 @@ namespace MuafiyetProjesi2024.Controllers
 
             // Dosya adını ve yolunu belirle
             string fileName = $"{ogrTC}-Basvuru.pdf";
-            string filePath = Path.Combine("/uploads", fileName);
+            string filePath = Path.Combine("wwwroot/uploads", fileName);
 
             // PDF'yi sunucuda kaydet
             await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);
