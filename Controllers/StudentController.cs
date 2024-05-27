@@ -73,7 +73,7 @@ namespace MuafiyetProjesi2024.Controllers
                     evrakBilgisi.DersIcerik = dersDokumDosyaYolu;
                 }
 
-                var oturumuAcanTc = TempData["oturumAcanTc"] as String;
+                var oturumuAcanTc = TempData.Peek("oturumAcanTc") as String;
                 var oturumuAcankullanici = _context.Kullanicilar.SingleOrDefault(x => x.Tckimlik == oturumuAcanTc);
                 
                 basvuruBilgisi.Kullanici = oturumuAcankullanici;
