@@ -22,6 +22,7 @@ namespace MuafiyetProjesi2024.Controllers
 
         public IActionResult Index()
         {
+            TempData.Clear(); // Home-Index açıldığında TempData sıfırlanacak. front-end de bu sayfaya yönlendirmek aynı zamanda çıkış yapmayı sağlar.
             return View();
         }
 

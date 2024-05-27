@@ -22,6 +22,7 @@ namespace MuafiyetProjesi2024.Controllers
 
         public IActionResult AdminLogin()
         {
+            TempData.Clear(); //Admin login sayfası açıldığında tempdata sıfırlanacak. frontend'de bu sayfaya yönlendirmek aynı zamanda çıkış yapmayı sağlar.
             return View();
         }
 
