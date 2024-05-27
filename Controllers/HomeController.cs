@@ -32,7 +32,7 @@ namespace MuafiyetProjesi2024.Controllers
                 string directories = string.Join(Environment.NewLine, Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories));
                 Console.WriteLine(directories);
 
-                string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "/wwwroot/uploads");
 
                 TempData["klasorYolu"] = directories;
 
