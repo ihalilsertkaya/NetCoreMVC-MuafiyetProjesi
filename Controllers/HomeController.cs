@@ -20,12 +20,11 @@ namespace MuafiyetProjesi2024.Controllers
             _context = context;
         }
 
-
+        
         public IActionResult Index()
         {
             try
             {
-                TempData["klasorYolu"] = Directory.GetCurrentDirectory();
                 // wwwroot/uploads dizinini belirle
                 string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
 
