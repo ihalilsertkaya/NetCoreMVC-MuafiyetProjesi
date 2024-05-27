@@ -102,10 +102,18 @@
                 name="OgrNo"
               /><br />
             </div>
-             <div class="flex-label-input">
+            <div class="flex-label-input">
               <label for="telefon">Telefon:</label>
-              <input type="tel" id="telefon" name="Tel" required placeholder="+90 5XX XXX XX XX" pattern="\+90\s5\d{2}\s\d{3}\s\d{2}\s\d{2}"/>
-           </div>
+              <input 
+                  type="tel" 
+                  id="telefon" 
+                  name="Tel" 
+                  required 
+                  pattern="[5]{1}[0-9]{9}" 
+                  placeholder="5XX XXX XX XX"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" 
+              /><br />
+            </div>
             <div class="flex-label-input">
               <label for="eposta">Eposta:</label>
               <input type="email" id="eposta" name="Mail" required readonly value="@ViewBag.Mail" /><br />
@@ -143,23 +151,14 @@
                 required
               /><br />
             </div>
-             <div class="flex-label-input">
-              <label>Geldiği Bölüm:</label>
-               <select id="GeldigiBolum" name="GeldigiBolum">
-              <option value="Bilgisayar Mühendisliği">
-                Bilgisayar Mühendisliği
-              </option>
-              <option value="Elektrik Elektronik Mühendisliği">
-                Elektrik Elektronik Mühendisliği
-              </option>
-               <option value="Endüstri Mühendisliği">
-                Endüstri Mühendisliği
-              </option>
-              <option value="Makine Mühendisliği">
-                Makine Mühendisliği
-              </option>
-              <option value="Mimarlık">Mimarlık</option></select
-            ><br />
+            <div class="flex-label-input">
+              <label for="GeldigiBolum">Geldiği Bölüm:</label>
+              <input
+                type="text"
+                id="GeldigiBolum"
+                name="GeldigiBolum"
+                required
+              /><br />
             </div>
           </div>
         </div>
@@ -194,7 +193,7 @@
               </tr>
             </tbody>
           </table>
-          <button id="ekleButton">Ders Ekle</button>
+          <button id="ekleButton" style="border:none;border-radius:2px;">Ders Ekle</button>
         </div>
         <hr />
         <!--! Yönetmelik Maddesi Componenti  -->

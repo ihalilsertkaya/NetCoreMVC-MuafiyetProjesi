@@ -121,12 +121,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // Tıklanan öğeye göre ilgili veri niteliğini ayarla
             if (event.target.id === 'Basvuru') {
                 tr.dataset.basvuruAcildi = "true";
-                event.target.style.color = 'white'; 
+                event.target.style.color = 'black'; 
             } else if (event.target.id === 'Transkript') {
-                event.target.style.color = 'white'; 
+                event.target.style.color = 'black'; 
                 tr.dataset.transkriptAcildi = "true";
             } else if (event.target.id === 'DersDokum') {
-                event.target.style.color = 'white'; 
+                event.target.style.color = 'black'; 
                 tr.dataset.dersDokumAcildi = "true";
             }
 
@@ -139,6 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (tr.dataset.basvuruAcildi === "true" && tr.dataset.transkriptAcildi === "true" && tr.dataset.dersDokumAcildi === "true") {
             tr.style.backgroundColor = '#24D330';
             tr.style.color = 'white';
+            
+            tr.querySelectorAll(".fa-file-pdf").forEach(function(pdfIcon) {
+                pdfIcon.style.color = "white";
+            });
         }
     }
 });
