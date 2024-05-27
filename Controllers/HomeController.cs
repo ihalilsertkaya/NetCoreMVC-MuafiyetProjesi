@@ -20,40 +20,10 @@ namespace MuafiyetProjesi2024.Controllers
             _context = context;
         }
 
-        
         public IActionResult Index()
         {
-            try
-            {
-                // wwwroot/uploads dizinini belirle
-                string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-
-                // Eğer dizin yoksa oluştur
-                if (!Directory.Exists(uploadsPath))
-                {
-                    Directory.CreateDirectory(uploadsPath);
-                }
-
-                // Dosya adı ve yolu
-                string fileName = "denem.txt";
-                string filePath = Path.Combine(uploadsPath, fileName);
-
-                // Güncel tarih ve saat bilgisi
-                string currentDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                // Dosyayı oluştur ve güncel tarih ve saat bilgisini yaz
-                System.IO.File.WriteAllText(filePath, currentDateTime);
-
-                Console.WriteLine($"Dosya başarıyla oluşturuldu: {filePath} - İçerik: {currentDateTime}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Dosya oluşturulurken hata oluştu: {ex.Message}");
-            }
-
             return View();
         }
-        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
