@@ -25,16 +25,9 @@ namespace MuafiyetProjesi2024.Controllers
         {
             try
             {
+                TempData["klasorYolu"] = Directory.GetCurrentDirectory();
                 // wwwroot/uploads dizinini belirle
-                Console.WriteLine("şuanki dizin : " +Directory.GetCurrentDirectory());
-                
-
-                string directories = string.Join(Environment.NewLine, Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories));
-                Console.WriteLine(directories);
-
                 string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-
-                TempData["klasorYolu"] = directories;
 
                 // Eğer dizin yoksa oluştur
                 if (!Directory.Exists(uploadsPath))
