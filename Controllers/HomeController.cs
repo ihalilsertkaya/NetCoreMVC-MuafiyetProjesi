@@ -98,7 +98,7 @@ namespace MuafiyetProjesi2024.Controllers
             byte[] pdfBytes = Convert.FromBase64String(pdfBase64);
 
             // Dosya adını ve yolunu belirle
-            string fileName = $"{ogrTC}-Muafiyet.pdf";
+            string fileName = $"{ogrTC}-Basvuru.pdf";
             string filePath = Path.Combine("wwwroot/uploads", fileName);
 
             // PDF'yi sunucuda kaydet
