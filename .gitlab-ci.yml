@@ -8,15 +8,6 @@ container_build:
     - podman build --pull --tag $CI_REGISTRY_IMAGE:latest .
     - podman push $CI_REGISTRY_IMAGE:latest
     
-upload_uploads_folder:
-  stage: build
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  script:
-    - podman run --rm -v /ibrahim.sertkaya82/muafiyetprojesiv1/wwwroot/uploads:/uploads alpine sh -c "cp -r /uploads/* /ibrahim.sertkaya82/muafiyetprojesiv1/wwwroot/uploads/"
-  dependencies:
-    - container_build
-
 deploy_production:
   stage: deploy
   needs:
