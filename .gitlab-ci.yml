@@ -7,7 +7,15 @@ container_build:
     - podman login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - podman build --pull --tag $CI_REGISTRY_IMAGE:latest .
     - podman push $CI_REGISTRY_IMAGE:latest
-
+    
+upload_uploads_folder:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - podman run --rm -v /path/to/wwwroot/uploads:/uploads alpine sh -c "cp -r /uploads/* /path/to/gitlab/repo/wwwroot/uploads/"
+  dependencies:
+    - container_build
 
 deploy_production:
   stage: deploy
